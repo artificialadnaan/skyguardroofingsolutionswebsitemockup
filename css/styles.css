@@ -458,10 +458,15 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
 
 /* ---- STATS BAR ---- */
 .stats-bar {
+  padding: 3rem 1.5rem;
+}
+
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  padding: 3rem 0;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .stat-item {
@@ -469,6 +474,7 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
 }
 
 .stat-number {
+  display: block;
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--teal);
@@ -478,6 +484,7 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
 }
 
 .stat-label {
+  display: block;
   font-size: 0.9rem;
   color: rgba(255,255,255,0.6);
   font-weight: 500;
@@ -1078,6 +1085,19 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
     border-bottom: 1px solid rgba(255,255,255,0.05);
   }
 
+  /* Fix Contact Us CTA button in mobile menu */
+  .nav-links > li:last-child {
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .nav-links > li > a.nav-cta {
+    display: block;
+    text-align: center;
+    padding: 0.85rem 1.25rem;
+    border-bottom: none;
+  }
+
   .dropdown-menu {
     position: static;
     opacity: 1;
@@ -1133,6 +1153,11 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
   .page-hero {
     padding: 8rem 1.25rem 3rem;
   }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1144,8 +1169,17 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
     grid-template-columns: 1fr;
   }
 
-  .stats-bar {
+  .stats-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
   }
 
   .gallery-grid {
@@ -1424,21 +1458,198 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
   text-align: center;
 }
 
-/* Blog listing - scheduled post visibility */
-.blog-card[data-publish-date] {
+/* ---- BLOG LISTING PAGE (redesigned) ---- */
+
+/* Scheduling: hide all posts by default, show when .published is added by JS */
+[data-publish-date] {
   display: none;
 }
 
-.blog-card.published {
-  display: block;
+[data-publish-date].published {
+  display: flex;
 }
 
-/* Blog listing - date label */
-.blog-date {
-  display: block;
+/* Featured post (top of blog page) */
+.blog-featured {
+  display: flex;
+  gap: 2.5rem;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+.blog-featured:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.blog-featured-img {
+  flex: 0 0 50%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.blog-featured-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.blog-featured:hover .blog-featured-img img {
+  transform: scale(1.04);
+}
+
+.blog-featured-body {
+  flex: 1;
+  padding: 2.5rem 2.5rem 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blog-featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.blog-featured-body h2 {
+  font-size: 1.65rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.blog-featured-body h2 a {
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+
+.blog-featured-body h2 a:hover {
+  color: var(--teal-dark);
+}
+
+.blog-featured-body p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.blog-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--teal-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: gap 0.2s;
+}
+
+.blog-read-more:hover {
+  gap: 0.75rem;
+}
+
+/* Blog list heading */
+.blog-list-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+/* Blog list items (horizontal card) */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.blog-list-item {
+  display: flex;
+  gap: 1.5rem;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.blog-list-item:hover {
+  border-color: var(--teal);
+  box-shadow: 0 6px 24px rgba(22, 200, 223, 0.08);
+  transform: translateY(-2px);
+}
+
+.blog-list-img {
+  flex: 0 0 260px;
+  overflow: hidden;
+}
+
+.blog-list-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  transition: transform 0.4s;
+}
+
+.blog-list-item:hover .blog-list-img img {
+  transform: scale(1.06);
+}
+
+.blog-list-body {
+  flex: 1;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blog-list-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
   font-size: 0.8rem;
   color: var(--text-secondary);
-  margin-top: 0.75rem;
+}
+
+.blog-meta-date,
+.blog-meta-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.blog-list-body h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.blog-list-body h3 a {
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+
+.blog-list-body h3 a:hover {
+  color: var(--teal-dark);
+}
+
+.blog-list-body p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -1448,5 +1659,43 @@ a { text-decoration: none; color: inherit; transition: color 0.2s; }
 
   .blog-article-meta {
     gap: 0.75rem;
+  }
+
+  /* Featured post stacks vertically on mobile */
+  .blog-featured {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .blog-featured-img {
+    flex: none;
+    aspect-ratio: 16/9;
+  }
+
+  .blog-featured-body {
+    padding: 1.5rem;
+  }
+
+  .blog-featured-body h2 {
+    font-size: 1.3rem;
+  }
+
+  /* List items stack vertically on mobile */
+  .blog-list-item {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .blog-list-img {
+    flex: none;
+    aspect-ratio: 16/9;
+  }
+
+  .blog-list-img img {
+    aspect-ratio: 16/9;
+  }
+
+  .blog-list-body {
+    padding: 1.25rem;
   }
 }
