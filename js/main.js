@@ -124,51 +124,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ---- Contact form handler ----
-  const contactForm = document.querySelector('#contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+  // ---- Form submission ----
+  // Posts to /api/lead on this same server, which forwards the submission to
+  // the SkyGuard CRM API for delivery to the office inbox. Success is only
+  // reported after the server confirms it — a failure tells the visitor to
+  // call instead, so a lost message is never shown as "Sent".
+  function wireLeadForm(selector, formType, opts) {
+    const form = document.querySelector(selector);
+    if (!form) return;
+
+    const btn = form.querySelector('button[type="submit"]');
+    const origText = btn.textContent;
+    let resetTimer;
+
+    // Inline status line, announced to screen readers as it changes.
+    const status = document.createElement('p');
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    status.style.cssText = 'margin:0.75rem 0 0;font-size:0.95rem;display:none;';
+    form.appendChild(status);
+
+    function showStatus(message, color) {
+      status.textContent = message;
+      status.style.color = color;
+      status.style.display = 'block';
+    }
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      const origText = btn.textContent;
-      btn.textContent = 'Sending...';
+      if (btn.disabled) return;
+
+      clearTimeout(resetTimer);
+      status.style.display = 'none';
+      btn.textContent = opts.pending;
       btn.disabled = true;
 
-      // Simulate — replace with real endpoint later
-      setTimeout(() => {
-        btn.textContent = 'Message Sent!';
+      const payload = {};
+      new FormData(form).forEach((value, key) => {
+        payload[key] = typeof value === 'string' ? value : '';
+      });
+
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ formType, payload }),
+        });
+
+        if (!res.ok) throw new Error('Request failed with ' + res.status);
+
+        btn.textContent = opts.success;
         btn.style.background = '#10b981';
-        contactForm.reset();
-        setTimeout(() => {
+        form.reset();
+        showStatus(opts.successNote, '#047857');
+      } catch (err) {
+        console.error('Form submission failed:', err);
+        btn.textContent = origText;
+        btn.style.background = '';
+        showStatus(
+          'Sorry — we could not send that. Please call us at (682) 330-5088 or email office@skyguardrs.com.',
+          '#b91c1c'
+        );
+      } finally {
+        btn.disabled = false;
+        resetTimer = setTimeout(() => {
           btn.textContent = origText;
           btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
-      }, 1000);
+        }, 5000);
+      }
     });
   }
 
-  // ---- Careers form handler ----
-  const careersForm = document.querySelector('#careers-form');
-  if (careersForm) {
-    careersForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = careersForm.querySelector('button[type="submit"]');
-      const origText = btn.textContent;
-      btn.textContent = 'Submitting...';
-      btn.disabled = true;
+  wireLeadForm('#contact-form', 'contact', {
+    pending: 'Sending...',
+    success: 'Message Sent!',
+    successNote: 'Thanks — we received your message and will be in touch shortly.',
+  });
 
-      setTimeout(() => {
-        btn.textContent = 'Application Submitted!';
-        btn.style.background = '#10b981';
-        careersForm.reset();
-        setTimeout(() => {
-          btn.textContent = origText;
-          btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
-      }, 1000);
-    });
-  }
+  wireLeadForm('#careers-form', 'careers', {
+    pending: 'Submitting...',
+    success: 'Application Submitted!',
+    successNote: 'Thanks for applying — we will reach out if your qualifications match an opening.',
+  });
 
 });

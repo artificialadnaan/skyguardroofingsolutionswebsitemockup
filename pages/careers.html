@@ -136,6 +136,11 @@
             <label for="careers-info">Additional Information</label>
             <textarea id="careers-info" name="info" rows="5" placeholder="Tell us about your experience, skills, or anything else you'd like us to know."></textarea>
           </div>
+          <!-- Honeypot: hidden from people, tempting to bots. Server drops any submission that fills it. -->
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <label for="careers-company">Company</label>
+            <input type="text" id="careers-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="btn btn-primary" style="width:100;">Submit Application</button>
         </form>
       </div>
