@@ -1,0 +1,46 @@
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/"
+        ><img
+          src="/images/logo-horizontal.png"
+          alt="{{name}}"
+          width="180"
+          height="48"
+      /></a>
+      <p>
+        Roofing and exterior services for homeowners and businesses across
+        Dallas–Fort Worth.
+      </p>
+    </div>
+    <div>
+      <h2>Roofing services</h2>
+      <ul class="footer-links">
+        {{services}}
+      </ul>
+    </div>
+    <div>
+      <h2>Company &amp; service areas</h2>
+      <ul class="footer-links">
+        {{company}}
+      </ul>
+    </div>
+    <div>
+      <h2>Contact</h2>
+      <div class="footer-contact-item">
+        <a href="tel:{{phone}}">{{phoneDisplay}}</a>
+      </div>
+      <div class="footer-contact-item">
+        <a href="mailto:{{email}}">{{email}}</a>
+      </div>
+      <div class="footer-contact-item">
+        <div>{{streetAddress}}<br />{{city}}, {{region}} {{postalCode}}</div>
+      </div>
+      <p>{{hours}}</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{year}} {{name}}. All rights reserved.</p>
+    <div class="social-links">{{social}}</div>
+  </div>
+</footer>

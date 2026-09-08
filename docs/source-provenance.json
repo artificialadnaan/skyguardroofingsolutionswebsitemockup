@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "adf87cebe52eb6ffb1ff01e8ac4e7852069fdedf",
+  "sourceTree": "fcde5042b9b6012bab56f83e951105e3f0316e97",
+  "verifiedFiles": 120,
+  "recovery": "Exact Git blobs and original signed commit bytes recovered and hash-verified using GitHub API metadata; shallow boundary at original production commit",
+  "syntheticBaseline": "46e558d (local only, not branch parent)",
+  "manifest": "Original 120 tracked blobs matched; no LFS, submodules, symlinks or repository instruction files"
+}

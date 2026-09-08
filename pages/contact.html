@@ -78,40 +78,40 @@
           <!-- Contact Form -->
           <div class="fade-up">
             <h2 class="section-title" style="margin-bottom:1.5rem;">Send Us a Message</h2>
-            <form id="contact-form">
+            <p>For a roofing assessment, you can also <a href="/pages/inspections.html#request-inspection">request an inspection directly</a>. Fields marked * are required.</p><form id="contact-form">
               <div class="form-row">
                 <div class="form-group">
                   <label for="contact-name">Name <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="contact-name" name="name" required placeholder="Your full name">
+                  <input type="text" id="contact-name" name="name" required placeholder="Your full name" maxlength="120" autocomplete="name">
                 </div>
                 <div class="form-group">
                   <label for="contact-phone">Phone <span style="color:#e74c3c;">*</span></label>
-                  <input type="tel" id="contact-phone" name="phone" required placeholder="(555) 123-4567">
+                  <input type="tel" id="contact-phone" name="phone" required placeholder="(555) 123-4567" maxlength="40" autocomplete="tel">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
                   <label for="contact-email">Email <span style="color:#e74c3c;">*</span></label>
-                  <input type="email" id="contact-email" name="email" required placeholder="you@example.com">
+                  <input type="email" id="contact-email" name="email" required placeholder="you@example.com" maxlength="254" autocomplete="email">
                 </div>
                 <div class="form-group">
                   <label for="contact-address">Address</label>
-                  <input type="text" id="contact-address" name="address" placeholder="Street address">
+                  <input type="text" id="contact-address" name="address" placeholder="Street address" maxlength="200" autocomplete="street-address">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
                   <label for="contact-city">City</label>
-                  <input type="text" id="contact-city" name="city" placeholder="City">
+                  <input type="text" id="contact-city" name="city" placeholder="City" maxlength="100" autocomplete="address-level2">
                 </div>
                 <div class="form-group">
                   <label for="contact-state-zip">State / ZIP</label>
-                  <input type="text" id="contact-state-zip" name="state_zip" placeholder="TX 76137">
+                  <input type="text" id="contact-state-zip" name="state_zip" placeholder="TX 76137" maxlength="30" autocomplete="postal-code">
                 </div>
               </div>
               <div class="form-group">
-                <label for="contact-message">Message <span style="color:#e74c3c;">*</span></label>
-                <textarea id="contact-message" name="message" rows="5" required placeholder="Tell us about your project or question..."></textarea>
+                <label for="contact-message">Message (optional)</label>
+                <textarea id="contact-message" name="message" rows="5" maxlength="4000" placeholder="Tell us about your project or question..."></textarea>
               </div>
               <!-- Honeypot: hidden from people, tempting to bots. Server drops any submission that fills it. -->
               <div style="position:absolute;left:-9999px;" aria-hidden="true">
@@ -129,8 +129,8 @@
             <div class="contact-info-item">
               <span class="contact-info-icon"><i data-lucide="map-pin"></i></span>
               <div>
-                <strong>Our Office</strong>
-                <p>4500 Mercantile Plaza, Suite 300, Fort Worth, TX 76137</p>
+                <strong>Fort Worth Office</strong>
+                <p>4500 Mercantile Plaza, Suite 300, Fort Worth, TX 76137</p><p>Please contact us before visiting to arrange an appointment.</p>
               </div>
             </div>
 
