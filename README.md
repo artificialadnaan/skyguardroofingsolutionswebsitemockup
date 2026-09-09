@@ -8,7 +8,7 @@ This repository contains the public website's source, static build and Node HTTP
 
 Use Node22. Run `npm ci`, `npm run build`, then `npm start` (default port3000). The server publishes only `dist/`. Environment variable names and defaults are documented in `.env.example`; provide values through your shell or Railway, keeping credentials out of Git.
 
-Run `npm test` and `npm run check` before a release. `npm run images` regenerates the committed responsive WebP variants from the original images. Business details live in `data/business.json`; publication records live in `data/publication.json`.
+Run `npm test`, `npm run check` and `python3 scripts/check-crawlers.py` before a release. The crawler check uses Python 3.9+ standard-library XML and robots parsers. `npm run images` regenerates the committed responsive WebP variants from the original images. Business details live in `data/business.json`; publication records live in `data/publication.json`.
 
 ## Review and release
 
@@ -22,3 +22,7 @@ Run `npm test` and `npm run check` before a release. `npm run images` regenerate
 Publication uses the current date in America/Chicago. A future-dated article is omitted from public output and the sitemap until a build on or after its declared date. The documented September14,2026 release requires a fresh build/deployment; the live static files do not change on a clock tick alone.
 
 Analytics is disabled by default. Enable it only after verifying the real property's manual-measurement settings and testing sanitized payloads; visitor consent is still required. Browser submission tests must use the local mock preview server, never production lead delivery.
+
+## Search and AI discovery
+
+The build generates the authoritative `dist/robots.txt` and `dist/sitemap.xml`; Railway serves these generated files. The wildcard crawler policy permits public pages and assets, including AI search/retrieval and training agents, while excluding operational API and health paths. Source-file access remains controlled by the server, not robots.txt. The sitemap includes full-resolution informative gallery images and excludes decorative images and scheduled unpublished pages. This permits discovery; it does not promise indexing, AI citations or rankings.
