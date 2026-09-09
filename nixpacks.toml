@@ -1,5 +1,12 @@
+# Legacy Nixpacks fallback; production Railway uses Railpack/package engines.
 [phases.setup]
-nixPkgs = ["nodejs_18"]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
 
 [start]
 cmd = "node server.js"

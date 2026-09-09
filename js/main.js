@@ -1,210 +1,331 @@
-/* ============================================
-   SkyGuard Roofing Solutions — Main JS
-   ============================================ */
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  // ---- Navbar scroll effect ----
-  const nav = document.querySelector('.nav-wrap');
+/* SkyGuard navigation, accessible interactions and CRM-compatible lead forms. */
+document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+  const metrics = window.SkyGuardMetrics;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const nav = document.querySelector(".nav-wrap");
   if (nav) {
-    const onScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    const update = () => nav.classList.toggle("scrolled", window.scrollY > 60);
+    window.addEventListener("scroll", update, { passive: true });
+    update();
   }
-
-  // ---- Mobile nav toggle ----
-  const toggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const overlay = document.querySelector('.nav-overlay');
-
-  if (toggle && navLinks) {
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      navLinks.classList.toggle('open');
-      if (overlay) overlay.classList.toggle('active');
-      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  const toggle = document.querySelector(".nav-toggle"),
+    links = document.querySelector(".nav-links"),
+    overlay = document.querySelector(".nav-overlay");
+  const mobile = () => window.innerWidth <= 768;
+  function menu(open, returnFocus = false) {
+    if (!toggle || !links) return;
+    toggle.classList.toggle("open", open);
+    links.classList.toggle("open", open);
+    overlay?.classList.toggle("active", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute(
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
+    );
+    links.inert = mobile() && !open;
+    document.body.style.overflow = open ? "hidden" : "";
+    if (returnFocus) toggle.focus();
+  }
+  if (toggle && links) {
+    if (!links.id) links.id = "primary-navigation";
+    toggle.setAttribute("aria-controls", links.id);
+    menu(false);
+    toggle.addEventListener("click", () =>
+      menu(!links.classList.contains("open")),
+    );
+    overlay?.addEventListener("click", () => menu(false, true));
+    window.addEventListener("resize", () => {
+      if (!mobile()) menu(false);
+      else links.inert = !links.classList.contains("open");
     });
-
-    if (overlay) {
-      overlay.addEventListener('click', () => {
-        toggle.classList.remove('open');
-        navLinks.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    }
-  }
-
-  // ---- Mobile dropdown toggles ----
-  document.querySelectorAll('.has-dropdown > a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
+    links
+      .querySelectorAll("a")
+      .forEach((a) => a.addEventListener("click", () => menu(false)));
+    document.addEventListener("keydown", (e) => {
+      if (!links.classList.contains("open")) return;
+      if (e.key === "Escape") {
         e.preventDefault();
-        const dropdown = link.nextElementSibling;
-        if (dropdown) dropdown.classList.toggle('mobile-open');
+        menu(false, true);
+      }
+      if (e.key === "Tab") {
+        const items = [
+          toggle,
+          ...links.querySelectorAll("a[href],button"),
+        ].filter((el) => el.getClientRects().length);
+        if (!items.length) return;
+        const current = items.indexOf(document.activeElement);
+        const next =
+          current < 0
+            ? 0
+            : (current + (e.shiftKey ? -1 : 1) + items.length) % items.length;
+        e.preventDefault();
+        items[next].focus();
       }
     });
-  });
-
-  // ---- Scroll animations ----
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // ---- Gallery lightbox ----
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxImg = lightbox?.querySelector('img');
-  const lightboxClose = lightbox?.querySelector('.lightbox-close');
-
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      if (img && lightbox && lightboxImg) {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
   }
-
+  // Separate disclosure buttons preserve the service-hub links on touch screens.
+  document.querySelectorAll(".has-dropdown").forEach((item, i) => {
+    const dropdown = item.querySelector(".dropdown-menu"),
+      anchor = item.querySelector(":scope > a");
+    if (!dropdown || !anchor) return;
+    dropdown.id = dropdown.id || "nav-submenu-" + i;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "submenu-toggle";
+    button.textContent = "⌄";
+    button.setAttribute(
+      "aria-label",
+      "Show " + anchor.textContent.trim() + " links",
+    );
+    button.setAttribute("aria-controls", dropdown.id);
+    button.setAttribute("aria-expanded", "false");
+    anchor.after(button);
+    button.addEventListener("click", () => {
+      const open = !dropdown.classList.contains("mobile-open");
+      dropdown.classList.toggle("mobile-open", open);
+      button.setAttribute("aria-expanded", String(open));
+    });
+  });
+  document
+    .querySelectorAll(".fade-up")
+    .forEach((el) => el.classList.add("visible"));
+  const lightbox = document.querySelector(".lightbox"),
+    photo = lightbox?.querySelector("img"),
+    close = lightbox?.querySelector(".lightbox-close");
+  let trigger;
+  function closePhoto() {
+    if (!lightbox) return;
+    lightbox.classList.remove("active");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    trigger?.focus();
+  }
   if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Enlarged project photo");
+    lightbox.setAttribute("aria-hidden", "true");
   }
-
-  function closeLightbox() {
-    if (lightbox) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
-
-  // ---- Smooth scroll for anchor links ----
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
+  document.querySelectorAll(".gallery-item").forEach((item) => {
+    if (!photo || !lightbox) return;
+    item.tabIndex = 0;
+    item.setAttribute("role", "button");
+    item.setAttribute(
+      "aria-label",
+      "Enlarge " + (item.querySelector("img")?.alt || "project photo"),
+    );
+    const open = () => {
+      const img = item.querySelector("img");
+      if (!img) return;
+      trigger = item;
+      photo.removeAttribute("srcset");
+      photo.removeAttribute("sizes");
+      photo.src = img.dataset.fullSrc || img.currentSrc || img.src;
+      photo.alt = img.alt;
+      lightbox.classList.add("active");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      close?.focus();
+    };
+    item.addEventListener("click", open);
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        open();
       }
     });
   });
-
-  // ---- Active nav link ----
-  const currentPath = window.location.pathname;
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    if (link.getAttribute('href') === currentPath ||
-        (currentPath === '/' && link.getAttribute('href') === '/') ||
-        (currentPath === '/index.html' && link.getAttribute('href') === '/')) {
-      link.classList.add('active');
+  close?.addEventListener("click", closePhoto);
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closePhoto();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox?.classList.contains("active")) return;
+    if (e.key === "Escape") closePhoto();
+    if (e.key === "Tab") {
+      e.preventDefault();
+      close?.focus();
     }
   });
-
-  // ---- Form submission ----
-  // Posts to /api/lead on this same server, which forwards the submission to
-  // the SkyGuard CRM API for delivery to the office inbox. Success is only
-  // reported after the server confirms it — a failure tells the visitor to
-  // call instead, so a lost message is never shown as "Sent".
-  function wireLeadForm(selector, formType, opts) {
+  document.querySelectorAll('a[href^="#"]').forEach((a) =>
+    a.addEventListener("click", (e) => {
+      const hash = a.getAttribute("href");
+      if (!hash || hash === "#") return;
+      let id;
+      try {
+        id = decodeURIComponent(hash.slice(1));
+      } catch {
+        return;
+      }
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: reduced ? "auto" : "smooth",
+        block: "start",
+      });
+      if (!target.hasAttribute("tabindex"))
+        target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    }),
+  );
+  document.querySelectorAll(".nav-links a").forEach((a) => {
+    if (new URL(a.href, location.href).pathname === location.pathname) {
+      a.classList.add("active");
+      a.setAttribute("aria-current", "page");
+    }
+  });
+  document
+    .querySelectorAll('a[href^="tel:"]')
+    .forEach((a) =>
+      a.addEventListener("click", () => metrics?.event("click_to_call")),
+    );
+  const contactFields = [
+    "name",
+    "phone",
+    "email",
+    "address",
+    "city",
+    "state_zip",
+    "message",
+    "company",
+  ];
+  const careersFields = [
+    "name",
+    "phone",
+    "email",
+    "position",
+    "citizen",
+    "license",
+    "info",
+    "company",
+  ];
+  function wire(selector, formType) {
     const form = document.querySelector(selector);
     if (!form) return;
-
-    const btn = form.querySelector('button[type="submit"]');
-    const origText = btn.textContent;
-    let resetTimer;
-
-    // Inline status line, announced to screen readers as it changes.
-    const status = document.createElement('p');
-    status.setAttribute('role', 'status');
-    status.setAttribute('aria-live', 'polite');
-    status.style.cssText = 'margin:0.75rem 0 0;font-size:0.95rem;display:none;';
-    form.appendChild(status);
-
-    function showStatus(message, color) {
-      status.textContent = message;
-      status.style.color = color;
-      status.style.display = 'block';
+    const button = form.querySelector('button[type="submit"]');
+    if (!button) return;
+    const original = button.textContent;
+    const limits = {
+      name: 160,
+      phone: 40,
+      email: 254,
+      address: 300,
+      city: 100,
+      state_zip: 100,
+      message: 8000,
+      position: 200,
+      citizen: 100,
+      license: 100,
+      info: 8000,
+      company: 200,
+    };
+    for (const [name, max] of Object.entries(limits)) {
+      const field = form.querySelector('[name="' + name + '"]');
+      if (field && ["INPUT", "TEXTAREA"].includes(field.tagName))
+        field.maxLength =
+          name === "message"
+            ? Math.max(
+                1,
+                max -
+                  (form.dataset.requestContext?.length || 0) -
+                  (form.dataset.requestContext ? 2 : 0),
+              )
+            : max;
     }
-
-    form.addEventListener('submit', async (e) => {
+    const status = document.createElement("p");
+    status.className = "form-status";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    form.appendChild(status);
+    let pending = false;
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (btn.disabled) return;
-
-      clearTimeout(resetTimer);
-      status.style.display = 'none';
-      btn.textContent = opts.pending;
-      btn.disabled = true;
-
-      const payload = {};
-      new FormData(form).forEach((value, key) => {
-        payload[key] = typeof value === 'string' ? value : '';
-      });
-
+      if (pending) return;
+      if (!form.reportValidity()) return;
+      pending = true;
+      button.disabled = true;
+      button.textContent = "Sending…";
+      form.setAttribute("aria-busy", "true");
+      status.textContent = "";
+      status.classList.remove("error");
+      const fields = new FormData(form),
+        payload = {};
+      for (const key of formType === "contact"
+        ? contactFields
+        : careersFields) {
+        const value = fields.get(key);
+        if (typeof value === "string") payload[key] = value.trim();
+      }
+      if (formType === "contact") {
+        const details = metrics?.attribution() || {};
+        const service = fields.get("service");
+        if (
+          typeof service === "string" &&
+          /^[a-z][a-z0-9_-]{0,49}$/i.test(service)
+        )
+          details.service = service;
+        const city = fields.get("city");
+        if (typeof city === "string" && /^[a-zA-Z .'-]{1,60}$/.test(city))
+          details.city = city;
+        payload.attribution = details;
+        if (form.dataset.requestContext)
+          payload.message = [form.dataset.requestContext, payload.message]
+            .filter(Boolean)
+            .join("\n\n");
+      }
+      const controller = new AbortController(),
+        timer = setTimeout(() => controller.abort(), 20000);
       try {
-        const res = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const response = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ formType, payload }),
+          signal: controller.signal,
         });
-
-        if (!res.ok) throw new Error('Request failed with ' + res.status);
-
-        btn.textContent = opts.success;
-        btn.style.background = '#10b981';
+        if (response.status !== 202) throw Error("Submission failed");
         form.reset();
-        showStatus(opts.successNote, '#047857');
-      } catch (err) {
-        console.error('Form submission failed:', err);
-        btn.textContent = origText;
-        btn.style.background = '';
-        showStatus(
-          'Sorry — we could not send that. Please call us at (682) 330-5088 or email office@skyguardrs.com.',
-          '#b91c1c'
-        );
+        status.textContent =
+          formType === "careers"
+            ? "Thanks for applying. We will contact you if an opening matches your qualifications."
+            : "Thanks — your request was received. Our team will contact you during business hours.";
+        if (formType === "contact" && !payload.company)
+          metrics?.event("generate_lead", {
+            form: form.dataset.requestContext ? "inspection" : "contact",
+          });
+      } catch {
+        status.classList.add("error");
+        status.textContent =
+          "We could not send your request. Please try again or call (682) 330-5088.";
+        if (formType === "contact")
+          metrics?.event("form_error", {
+            form: form.dataset.requestContext ? "inspection" : "contact",
+            reason: "submission_failed",
+          });
       } finally {
-        btn.disabled = false;
-        resetTimer = setTimeout(() => {
-          btn.textContent = origText;
-          btn.style.background = '';
-        }, 5000);
+        clearTimeout(timer);
+        pending = false;
+        button.disabled = false;
+        button.textContent = original;
+        form.removeAttribute("aria-busy");
       }
     });
   }
-
-  wireLeadForm('#contact-form', 'contact', {
-    pending: 'Sending...',
-    success: 'Message Sent!',
-    successNote: 'Thanks — we received your message and will be in touch shortly.',
-  });
-
-  wireLeadForm('#careers-form', 'careers', {
-    pending: 'Submitting...',
-    success: 'Application Submitted!',
-    successNote: 'Thanks for applying — we will reach out if your qualifications match an opening.',
-  });
-
+  wire("#contact-form", "contact");
+  wire("#careers-form", "careers");
+  if (!document.querySelector(".mobile-actions")) {
+    const actions = document.createElement("nav");
+    actions.className = "mobile-actions";
+    actions.setAttribute("aria-label", "Contact SkyGuard");
+    const call = document.createElement("a");
+    call.href = "tel:+16823305088";
+    call.textContent = "Call SkyGuard";
+    call.addEventListener("click", () => metrics?.event("click_to_call"));
+    const inspect = document.createElement("a");
+    inspect.href = "/pages/inspections.html#contact-form";
+    inspect.textContent = "Request inspection";
+    actions.append(call, inspect);
+    document.body.appendChild(actions);
+  }
 });

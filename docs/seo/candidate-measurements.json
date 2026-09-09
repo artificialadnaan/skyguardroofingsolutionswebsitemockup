@@ -1,0 +1,568 @@
+{
+  "summary": {
+    "pages": 55,
+    "oneH1": 55,
+    "canonicalCorrect": 55,
+    "titlesPresent": 55,
+    "uniqueTitles": 55,
+    "descriptionsPresent": 55,
+    "uniqueDescriptions": 55,
+    "images": 225,
+    "responsiveImages": 115,
+    "dimensionedImages": 225,
+    "brokenLocalLinkOccurrences": 0
+  },
+  "brokenLinks": [],
+  "pages": [
+    {
+      "path": "/",
+      "oneH1": true,
+      "uniqueTitleCandidate": "DFW Roof Repair & Replacement | SkyGuard Roofing Solutions",
+      "description": "Dallas\u2013Fort Worth roof repair, replacement, and storm damage assessments from SkyGuard Roofing Solutions. Request a roof inspection or call (682) 330-5088.",
+      "correctCanonical": true,
+      "images": 14,
+      "responsiveImages": 12,
+      "dimensionedImages": 14
+    },
+    {
+      "path": "/pages/about.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "About SkyGuard Roofing Solutions | SkyGuard",
+      "description": "A Fort Worth-based roofing and contracting business serving homeowners and commercial properties across Dallas\u2013Fort Worth.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "DFW Roofing Guides & Homeowner Resources | SkyGuard",
+      "description": "Dallas\u2013Fort Worth roofing guides on repair, replacement, storm documentation, permits, maintenance, and questions to ask before hiring a contractor.",
+      "correctCanonical": true,
+      "images": 33,
+      "responsiveImages": 31,
+      "dimensionedImages": 33
+    },
+    {
+      "path": "/pages/careers.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Career Inquiries | SkyGuard Roofing Solutions DFW",
+      "description": "Tell SkyGuard about your roofing, construction, sales, or project-support experience. Contact our Fort Worth team about current opportunities.",
+      "correctCanonical": true,
+      "images": 4,
+      "responsiveImages": 2,
+      "dimensionedImages": 4
+    },
+    {
+      "path": "/pages/commercial-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Commercial Roofing in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Roof assessments, repair scopes, replacement planning, and maintenance discussions for DFW commercial buildings.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/contact.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Contact SkyGuard Roofing Solutions | Dallas-Fort Worth TX",
+      "description": "Contact SkyGuard Roofing Solutions for roofing, siding, and general contracting in Dallas-Fort Worth. Call (682) 330-5088 or fill out our form.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/drywall.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Drywall Installation & Repair in DFW | SkyGuard",
+      "description": "Discuss drywall repair, new installation, texture matching, and project preparation for Dallas\u2013Fort Worth homes and businesses.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/fencing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Fence Installation & Repair in DFW | SkyGuard",
+      "description": "Explore fence repair and replacement scopes, material options, gates, and property considerations in Dallas\u2013Fort Worth.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/financing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing & Home Improvement Financing | SkyGuard",
+      "description": "Plan your roofing budget, compare written project scopes, and ask SkyGuard about current third-party financing options for DFW projects.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/framing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Framing Services in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Discuss residential and commercial framing scopes, additions, and structural repair coordination with SkyGuard.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/gallery.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing & Construction Photo Gallery | SkyGuard",
+      "description": "Browse roof surfaces, framing, and construction details in SkyGuard\u2019s existing photo gallery, then discuss the scope for your DFW property.",
+      "correctCanonical": true,
+      "images": 21,
+      "responsiveImages": 19,
+      "dimensionedImages": 21
+    },
+    {
+      "path": "/pages/inspections.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roof Inspections in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Request a roof inspection for your DFW home or business. Discuss visible conditions, repair options, and next steps with SkyGuard.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/insurance-claims.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing Documentation for Insurance Claims | SkyGuard",
+      "description": "Understand the roof records to keep after a DFW storm and how a contractor\u2019s construction estimate differs from your insurer\u2019s coverage decision.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/painting.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Interior & Exterior Painting in DFW | SkyGuard",
+      "description": "Discuss surface preparation, paint selection, and a defined interior or exterior painting scope for your Dallas\u2013Fort Worth property.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/residential-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Residential Roofing in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Roof inspections, repairs, and replacements for DFW homes. Compare the scope, materials, and next steps with SkyGuard Roofing Solutions.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/resources.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Dallas\u2013Fort Worth Roofing Resources | SkyGuard",
+      "description": "Official local permit, storm, and insurance resources to help DFW homeowners plan roofing work and evaluate a written estimate.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/roof-repair.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roof Repair in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Leaks, damaged shingles, and flashing concerns: get an inspection and a repair scope for your DFW home or commercial property.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/roof-replacement.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roof Replacement in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Plan a DFW roof replacement with a clear scope, material options, permit checks, and written project expectations.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/roofing-dallas.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing in Dallas, TX | SkyGuard",
+      "description": "Dallas roof repair, replacement, and storm damage assessments from SkyGuard Roofing Solutions, based in Fort Worth and serving the DFW area.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/roofing-fort-worth.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing in Fort Worth, TX | SkyGuard",
+      "description": "Fort Worth roof repair, roof replacement, and storm damage assessments. Contact SkyGuard at (682) 330-5088 to discuss your property.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/service-areas.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Dallas\u2013Fort Worth Roofing Service Area | SkyGuard",
+      "description": "SkyGuard is based in Fort Worth and serves DFW homeowners and businesses. Confirm service and scheduling for your property with our team.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/services.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing & Contracting Services in DFW | SkyGuard",
+      "description": "Explore SkyGuard\u2019s roof repair, replacement, storm damage, residential roofing, commercial roofing, and related contracting services.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/siding.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Siding Installation & Repair in DFW | SkyGuard",
+      "description": "Discuss siding replacement, storm-related repairs, and exterior details for your Dallas\u2013Fort Worth home.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/storm-damage.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Storm Damage Roof Repair in Dallas\u2013Fort Worth | SkyGuard",
+      "description": "Get roof-condition documentation and a repair or replacement assessment after hail, wind, or storm-related leaks in DFW.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/windows-doors.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Window & Door Installation in DFW | SkyGuard",
+      "description": "Plan window and door replacements with product selection, opening measurements, and installation details for your DFW home.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/allen-new-construction-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "New Construction Roofing in Allen, TX | SkyGuard",
+      "description": "For an Allen new-build project, clarify roofing decisions while the builder can still coordinate the structure, insulation, and roof details.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/arlington-hail-damage-roof-repair.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Arlington Hail Damage Roof Repair Guide | SkyGuard",
+      "description": "Hail near an Arlington home is a reason to check for damage, not proof that every roof needs replacement.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/bedford-attic-insulation-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Bedford Attic Insulation & Roofing Guide | SkyGuard",
+      "description": "Coordinate roofing, ventilation, air sealing, and insulation using an assessment of your actual home.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/burleson-gutter-roof-drainage.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Burleson Gutter & Roof Drainage Guide | SkyGuard",
+      "description": "For a Burleson home, roof drainage should be considered from the roof edge to the final discharge point.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/carrollton-wind-damage-repair.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Carrollton Wind Damage Roof Repair Guide | SkyGuard",
+      "description": "Missing or displaced roofing after wind in Carrollton deserves attention, but the repair scope should come from the roof\u2019s actual condition.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/celina-roof-warranty-guide.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roof Warranty Guide for Celina Homeowners | SkyGuard",
+      "description": "When comparing roofing proposals in Celina, ask for the warranty documents before work begins.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/cleburne-historic-home-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Historic Home Roofing in Cleburne, TX | SkyGuard",
+      "description": "Roof work on an older Cleburne home should preserve what gives the building its character while addressing water entry and structural needs.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/dallas-signs-new-roof.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Signs Your Dallas Roof Needs an Inspection | SkyGuard",
+      "description": "A leak or an aging roof does not automatically mean a Dallas home needs a complete replacement.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/denton-metal-vs-shingles.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Metal vs. Shingle Roofing in Denton, TX | SkyGuard",
+      "description": "Denton homeowners comparing metal roofing with asphalt shingles should evaluate the whole installed system, not just the material label.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/euless-commercial-roof-maintenance.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Euless Commercial Roof Maintenance Guide | SkyGuard",
+      "description": "Define inspection scope, repair responsibilities, drainage checks, and records for your commercial property.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/flower-mound-roof-maintenance.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Flower Mound Seasonal Roof Maintenance | SkyGuard",
+      "description": "A seasonal check helps Flower Mound homeowners record changes and arrange needed repairs.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/fort-worth-roofing-materials.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roofing Materials for Fort Worth Homes | SkyGuard",
+      "description": "For a Fort Worth roof replacement, begin with the roof\u2019s slope, structure, current condition, and budget.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/frisco-roof-replacement-cost.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Frisco Roof Replacement Cost: Budgeting Guide | SkyGuard",
+      "description": "What changes your roof replacement price and how to compare complete written estimates.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/garland-roof-ventilation.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Garland Roof & Attic Ventilation Guide | SkyGuard",
+      "description": "Ventilation is one part of a Garland roof and attic assembly.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/grand-prairie-roofing-permits.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Grand Prairie Roofing Permits & Registration | SkyGuard",
+      "description": "Permit requirements, contractor registration, and planning steps for Grand Prairie roofing work.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/grapevine-emergency-roof-repair.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Grapevine Emergency Roof Repair: First Steps | SkyGuard",
+      "description": "Safe first steps, temporary-protection questions, and what to document after storm damage.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/haltom-city-affordable-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Affordable Roofing in Haltom City: Budget Guide | SkyGuard",
+      "description": "A roofing budget for a Haltom City home should prioritize a workable repair or complete installation scope before optional upgrades.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/irving-prevent-roof-leaks.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Preventing Roof Leaks in Irving, TX | SkyGuard",
+      "description": "Leak prevention for an Irving home starts with finding and correcting specific vulnerabilities.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/keller-flat-roof-commercial.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Keller Commercial Flat Roof Options | SkyGuard",
+      "description": "A low-slope roof proposal for a Keller commercial property should begin with the building\u2019s current assembly, use, drainage, and roof condition.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/lewisville-roof-replacement-timeline.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Lewisville Roof Replacement Timeline | SkyGuard",
+      "description": "A Lewisville roof replacement schedule should separate inspection, decisions, approvals, material delivery, installation, and closeout.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/mansfield-energy-efficient-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Energy-Efficient Roofing in Mansfield, TX | SkyGuard",
+      "description": "Compare reflective materials and attic improvements without assuming a guaranteed energy saving.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/mckinney-storm-season-roof-prep.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "McKinney Storm Season Roof Preparation | SkyGuard",
+      "description": "Prepare a McKinney home for severe weather by keeping a condition record, addressing known defects, and organizing contacts before a storm.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/mesquite-hailstorm-recovery.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Mesquite Hailstorm Roof Recovery Guide | SkyGuard",
+      "description": "A Mesquite hailstorm can leave a homeowner making several decisions at once: whether the roof is leaking, who should inspect it, whether to contact insurance, and what can wait.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/nrh-roof-repair-vs-replace.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Roof Repair vs. Replacement in North Richland Hills | SkyGuard",
+      "description": "Compare repair feasibility, roof condition, written scope, and total cost before deciding.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/plano-roofing-contractor-guide.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "How to Choose a Roofing Contractor in Plano | SkyGuard",
+      "description": "Choosing a roofer in Plano is easier when each proposal answers the same questions.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/prosper-luxury-home-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Premium Roofing Materials for Prosper Homes | SkyGuard",
+      "description": "A roofing upgrade on a Prosper home should complement the architecture while meeting the practical needs of the roof.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/saginaw-storm-damage-assessment.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Saginaw Storm Damage Roof Assessment | SkyGuard",
+      "description": "For a Saginaw homeowner, a useful storm assessment explains the roof\u2019s current condition and the next practical step.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/southlake-insurance-claims.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Southlake Roof Damage & Insurance Documentation | SkyGuard",
+      "description": "How to organize roof damage records, understand a construction estimate, and ask your insurer the right questions.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/weatherford-roof-inspection.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Weatherford Roof Inspection Checklist | SkyGuard",
+      "description": "This Weatherford checklist helps you organize ground-level observations before a professional inspection.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    },
+    {
+      "path": "/pages/blog/wylie-summer-roofing.html",
+      "oneH1": true,
+      "uniqueTitleCandidate": "Summer Roof Replacement in Wylie, TX | SkyGuard",
+      "description": "Roofing can be scheduled during a Wylie summer, but the decision should account for the actual weather, material instructions, and the crew\u2019s safety plan.",
+      "correctCanonical": true,
+      "images": 3,
+      "responsiveImages": 1,
+      "dimensionedImages": 3
+    }
+  ]
+}

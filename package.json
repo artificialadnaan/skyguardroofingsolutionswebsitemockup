@@ -1,13 +1,21 @@
 {
   "name": "skyguard-roofing-website",
-  "version": "1.0.0",
-  "description": "SkyGuard Roofing Solutions — Dallas-Fort Worth roofing contractor website",
+  "version": "1.1.0",
+  "private": true,
+  "description": "SkyGuard Roofing Solutions \u2014 Dallas-Fort Worth roofing contractor website",
   "main": "server.js",
   "scripts": {
+    "build": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "test": "node --test tests/*.test.js tests/*.test.cjs",
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node scripts/build.js && node server.js",
+    "images": "node scripts/optimize-images.cjs"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22 <23"
+  },
+  "devDependencies": {
+    "sharp": "0.35.4"
   }
 }
