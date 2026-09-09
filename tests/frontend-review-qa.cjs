@@ -78,6 +78,11 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
     const full = await thumbnail.getAttribute("data-full-src");
     assert.ok(full, "full resolution image variant available");
     await tile.press("Enter");
+    assert.equal(
+      await page.locator(".lightbox img").getAttribute("alt"),
+      await thumbnail.getAttribute("alt"),
+      "enlarged image preserves the descriptive thumbnail alternative",
+    );
     assert.match(
       await page.locator(".lightbox img").getAttribute("src"),
       new RegExp(full.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
@@ -94,6 +99,14 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
       await tile.evaluate((e) => e === document.activeElement),
       true,
     );
+    for (const item of await page.locator(".gallery-item").all()) {
+      const alternative = await item.locator("img").getAttribute("alt");
+      assert.ok(alternative?.trim(), "each gallery photo has descriptive alt");
+      assert.equal(await item.getAttribute("aria-label"), "Enlarge " + alternative);
+      await item.press("Enter");
+      assert.equal(await page.locator(".lightbox img").getAttribute("alt"), alternative);
+      await page.keyboard.press("Escape");
+    }
     const context = await browser.newContext({
       javaScriptEnabled: false,
       viewport: { width: 390, height: 844 },

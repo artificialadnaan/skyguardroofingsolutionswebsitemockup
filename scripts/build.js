@@ -301,6 +301,7 @@ function build(options = {}) {
     openingHoursSpecification: business.openingHoursSpecification,
     sameAs: business.socialProfiles.map((p) => p.url),
   };
+  const sitemapImages = new Map();
   for (const page of active) {
     let main = page.source.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];
     if (!main) throw new Error("Missing main: " + page.route);
@@ -382,6 +383,20 @@ function build(options = {}) {
       if (hero) set("fetchpriority", "high");
       return updated;
     });
+    // Index informative content images, using the largest available rendition.
+    // Decorative backgrounds and the repeated header/footer logos are excluded.
+    const pageImages = new Set();
+    for (const match of htmlMain.matchAll(/<img\b[^>]*>/gi)) {
+      const image = attrs(match[0]);
+      if (!image.alt?.trim() || !image.src || image.src.startsWith("data:")) continue;
+      const variants = (image.srcset || "").split(",").map((entry) => {
+        const [src, width] = entry.trim().split(/\s+/);
+        return { src, width: parseInt(width, 10) || 0 };
+      }).filter((entry) => entry.src).sort((a, b) => b.width - a.width);
+      const imageUrl = new URL(variants[0]?.src || image.src, origin + page.route);
+      if (imageUrl.origin === origin) pageImages.add(imageUrl.href);
+    }
+    sitemapImages.set(page.route, [...pageImages]);
     const canonical = origin + page.route;
     const h1 = decode(
       htmlMain
@@ -482,15 +497,15 @@ function build(options = {}) {
   }
   fs.writeFileSync(
     path.join(output, "robots.txt"),
-    `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`,
+    robotsText(origin),
   );
   fs.writeFileSync(
     path.join(output, "sitemap.xml"),
-    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
       active
         .map(
           (p) =>
-            `<url><loc>${origin}${p.route}</loc>${p.modified ? `<lastmod>${p.modified}</lastmod>` : ""}</url>`,
+            `<url><loc>${escape(origin + p.route)}</loc>${p.modified ? `<lastmod>${p.modified}</lastmod>` : ""}${sitemapImages.get(p.route).map((url) => `<image:image><image:loc>${escape(url)}</image:loc></image:image>`).join("")}</url>`,
         )
         .join("\n") +
       "\n</urlset>\n",
@@ -521,7 +536,10 @@ function build(options = {}) {
   if (options.check !== false) require("./check").check(output, { origin });
   return report;
 }
-module.exports = { build, attrs, dateOnly, scheduled, walk };
+function robotsText(origin) {
+  return `# Public pages and images are available to search and AI crawlers.\n# The wildcard includes OAI-SearchBot, ChatGPT-User, GPTBot,\n# Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot,\n# Perplexity-User, Googlebot, Google-Extended and Bingbot.\n# Crawler permission does not guarantee indexing, citations or rankings.\nUser-agent: *\nDisallow: /api/\nDisallow: /healthz\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`;
+}
+module.exports = { build, attrs, dateOnly, scheduled, walk, robotsText };
 if (require.main === module) {
   const report = build();
   console.log(

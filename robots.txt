@@ -1,3 +1,10 @@
+# Public pages and images are available to search and AI crawlers.
+# The wildcard includes OAI-SearchBot, ChatGPT-User, GPTBot,
+# Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot,
+# Perplexity-User, Googlebot, Google-Extended and Bingbot.
+# Crawler permission does not guarantee indexing, citations or rankings.
 User-agent: *
+Disallow: /api/
+Disallow: /healthz
 Allow: /
 Sitemap: https://www.skyguardrs.com/sitemap.xml
