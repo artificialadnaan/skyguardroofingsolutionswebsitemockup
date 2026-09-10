@@ -27,7 +27,7 @@ Website: https://www.skyguardrs.com/
 
 Description: SkyGuard Roofing Solutions provides residential and commercial roofing services in Fort Worth and Dallas–Fort Worth, including roof repair, replacement, storm damage assessments and TEK stone-coated steel roofing. Contact the team to discuss your property and roofing options.
 
-Street address and hours: use the owner-confirmed record; the website and Chamber currently differ. Do not copy an unresolved address into additional listings. No certification, rating or years-of-experience assertion is included in this draft.
+Address confirmed September 10, 2026: 1500 North Main Street, Suite 231, Fort Worth, TX 76164. Hours still need separate owner confirmation before listing corrections. No certification, rating or years-of-experience assertion is included in this draft.
 
 ## Chamber and ribbon cutting
 
