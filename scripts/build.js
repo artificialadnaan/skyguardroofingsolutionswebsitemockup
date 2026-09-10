@@ -197,6 +197,8 @@ function build(options = {}) {
     ["/pages/storm-damage.html", "Storm Damage"],
     ["/pages/residential-roofing.html", "Residential Roofing"],
     ["/pages/commercial-roofing.html", "Commercial Roofing"],
+    ["/pages/stone-coated-steel-roofing-fort-worth.html", "Stone-Coated Steel"],
+    ["/pages/metal-roofing-fort-worth.html", "Metal Roofing"],
     ["/pages/siding.html", "Siding"],
     ["/pages/windows-doors.html", "Windows & Doors"],
     ["/pages/painting.html", "Painting"],
@@ -250,7 +252,7 @@ function build(options = {}) {
         .map(([k, v]) => [k, escape(v)]),
     ),
     services: links(
-      services.slice(0, 5).concat([
+      services.slice(0, 7).concat([
         ["/pages/inspections.html", "Roof Inspections"],
         ["/pages/services.html", "All Services"],
       ]),
@@ -299,13 +301,15 @@ function build(options = {}) {
       { "@type": "Place", name: "Dallas–Fort Worth" },
     ],
     openingHoursSpecification: business.openingHoursSpecification,
-    sameAs: business.socialProfiles.map((p) => p.url),
+    sameAs: [...business.socialProfiles, ...(business.publicProfiles || [])].map((p) => p.url),
   };
   const sitemapImages = new Map();
   for (const page of active) {
     let main = page.source.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];
     if (!main) throw new Error("Missing main: " + page.route);
     main = main.replace(/<main\b[^>]*>/i, '<main id="main">');
+    main = main.replaceAll("{{businessAddress}}", escape(`${business.streetAddress}, ${business.city}, ${business.region} ${business.postalCode}`))
+      .replaceAll("{{businessHours}}", escape(business.hours));
     main = scheduled(main, date);
     main = main.replace(/<form\b[^>]*>/gi, (tag) => {
       const fields = attrs(tag);

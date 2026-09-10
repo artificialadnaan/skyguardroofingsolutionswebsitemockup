@@ -106,7 +106,7 @@
                 </div>
                 <div class="form-group">
                   <label for="contact-state-zip">State / ZIP</label>
-                  <input type="text" id="contact-state-zip" name="state_zip" placeholder="TX 76137" maxlength="30" autocomplete="postal-code">
+                  <input type="text" id="contact-state-zip" name="state_zip" placeholder="State and ZIP code" maxlength="30" autocomplete="postal-code">
                 </div>
               </div>
               <div class="form-group">
@@ -130,7 +130,7 @@
               <span class="contact-info-icon"><i data-lucide="map-pin"></i></span>
               <div>
                 <strong>Fort Worth Office</strong>
-                <p>4500 Mercantile Plaza, Suite 300, Fort Worth, TX 76137</p><p>Please contact us before visiting to arrange an appointment.</p>
+                <p>{{businessAddress}}</p><p>Please contact us before visiting to arrange an appointment.</p>
               </div>
             </div>
 
@@ -154,7 +154,7 @@
               <span class="contact-info-icon"><i data-lucide="clock"></i></span>
               <div>
                 <strong>Hours</strong>
-                <p>Monday-Friday: 8am-6pm<br>Saturday: 9am-2pm</p>
+                <p>{{businessHours}}</p>
               </div>
             </div>
 

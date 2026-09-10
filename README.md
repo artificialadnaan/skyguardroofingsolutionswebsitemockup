@@ -26,3 +26,11 @@ Analytics is disabled by default. Enable it only after verifying the real proper
 ## Search and AI discovery
 
 The build generates the authoritative `dist/robots.txt` and `dist/sitemap.xml`; Railway serves these generated files. The wildcard crawler policy permits public pages and assets, including AI search/retrieval and training agents, while excluding operational API and health paths. Source-file access remains controlled by the server, not robots.txt. The sitemap includes full-resolution informative gallery images and excludes decorative images and scheduled unpublished pages. This permits discovery; it does not promise indexing, AI citations or rankings.
+
+### Fort Worth specialty content and legacy URLs
+
+Stone-coated-steel and metal-selection pages use the existing `/pages/*.html` architecture; `scripts/build.js` adds their navigation, canonical and Service graph. Update `data/business.json` for owner-confirmed identity changes: Contact and Fort Worth main content use `{{businessAddress}}` / `{{businessHours}}`, matching generated footer/schema. Keep the human-readable hours and `openingHoursSpecification` consistent.
+
+`data/legacy-redirects.json` contains only evidenced old paths with relevant successors. The server redirects only when the target is present in the public build. Preserve unknown-path 404s rather than adding a catch-all homepage redirect. Evidence: `docs/seo/TEK_MANUFACTURER_AND_LEGACY_RESEARCH.md`.
+
+Optional browser verification: `PLAYWRIGHT_MODULE=/absolute/path/to/playwright node tests/specialty-review-qa.cjs` against the mock preview on port 4173. Set `QA_ORIGIN` for read-only live checks; the script blocks all POSTs.

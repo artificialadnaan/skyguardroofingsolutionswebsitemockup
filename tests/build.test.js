@@ -124,3 +124,22 @@ test("lead forms cannot submit personal data through native GET", (t) => {
   );
   assert.match(html, /To request service or ask about careers/);
 });
+
+test("visible contact fields and organization schema share the business source", t => {
+  const root = fixture(t);
+  const business = { ...require("../data/business.json"), streetAddress: "100 Test & Example Street", postalCode: "76164", hours: "Monday–Saturday 7am–7pm", openingHoursSpecification: [{"@type":"OpeningHoursSpecification", dayOfWeek:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens:"07:00", closes:"19:00"}] };
+  fs.mkdirSync(path.join(root, "data"));
+  fs.writeFileSync(path.join(root, "data/business.json"), JSON.stringify(business));
+  fs.writeFileSync(path.join(root, "index.html"), source("Contact identity", "<p>{{businessAddress}}</p><p>{{businessHours}}</p>"));
+  build({ root, date: "2026-09-13" });
+  const html = fs.readFileSync(path.join(root, "dist/index.html"), "utf8");
+  assert.match(html, /100 Test &amp; Example Street, Fort Worth, TX 76164/);
+  assert.match(html, /Monday–Saturday 7am–7pm/);
+  assert.doesNotMatch(html, /\{\{business(?:Address|Hours)\}\}/);
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])["@graph"];
+  const businesses = graph.filter(item => item["@type"] === "RoofingContractor");
+  assert.equal(businesses.length, 1);
+  assert.equal(businesses[0].address.streetAddress, business.streetAddress);
+  assert.equal(businesses[0].address.postalCode, business.postalCode);
+  assert.deepEqual(businesses[0].openingHoursSpecification, business.openingHoursSpecification);
+});

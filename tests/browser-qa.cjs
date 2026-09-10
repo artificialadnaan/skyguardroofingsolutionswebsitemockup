@@ -7,7 +7,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/google-analytics|googletagmanager/.test(r.url()))provider.push(r.url());});
  async function open(path){await page.goto('http://127.0.0.1:4173'+path,{waitUntil:'domcontentloaded'});await page.locator('h1').waitFor();}
  async function shot(name){await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=700){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,60));}window.scrollTo(0,0);});await page.screenshot({path:'/private/tmp/skyguard-'+name+'.png',fullPage:true,timeout:15000});}
- await open('/');assert.match(await page.locator('h1').innerText(),/Dallas–Fort Worth/);await shot('home-desktop-final');
+ await open('/');assert.match(await page.locator('h1').innerText(),/Roofing Contractor in Fort Worth, TX/);await shot('home-desktop-final');
  for(const route of ['/pages/roofing-dallas.html','/pages/roofing-fort-worth.html','/pages/roof-repair.html','/pages/blog/grand-prairie-roofing-permits.html']){
 await open(route);assert.equal(await page.locator('h1').count(),1);
  }

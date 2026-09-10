@@ -3,6 +3,7 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 const zlib = require("node:zlib");
+const LEGACY_REDIRECTS = require("./data/legacy-redirects.json");
 const DEFAULT_ORIGIN = "https://www.skyguardrs.com";
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -241,6 +242,11 @@ function createServer(options = {}) {
       return res.end("Method Not Allowed");
     }
     let canonicalPath = pathname === "/index.html" ? "/" : pathname;
+    // Only verified old paths with a published successor receive a redirect.
+    const legacyTarget = Object.hasOwn(LEGACY_REDIRECTS, pathname)
+      ? LEGACY_REDIRECTS[pathname] : undefined;
+    if (legacyTarget && fs.existsSync(path.join(root, legacyTarget)))
+      canonicalPath = legacyTarget;
     if (
       pathname === "/pages/insurance-claims.html" &&
       !fs.existsSync(path.join(root, pathname))

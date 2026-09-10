@@ -8,11 +8,17 @@
   "city": "Fort Worth",
   "region": "TX",
   "postalCode": "76137",
-  "hours": "Monday–Friday 8am–6pm; Saturday 9am–2pm",
+  "hours": "Monday\u2013Friday 8am\u20136pm; Saturday 9am\u20132pm",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
       "opens": "08:00",
       "closes": "18:00"
     },
@@ -35,5 +41,11 @@
       "url": "https://www.youtube.com/@SkyGuardRSOffice"
     }
   ],
-  "factStatus": "Existing published Contact details; owner verification pending. Address does not establish Google Business Profile eligibility."
+  "factStatus": "Existing published Contact details; owner verification pending. Address does not establish Google Business Profile eligibility.",
+  "publicProfiles": [
+    {
+      "label": "Fort Worth Chamber business profile",
+      "url": "https://business.fortworthchamber.com/list/member/skyguard-roofing-solutions-50563.htm"
+    }
+  ]
 }
