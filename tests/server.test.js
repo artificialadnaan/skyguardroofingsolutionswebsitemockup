@@ -223,3 +223,28 @@ test("upstream failures, timeouts, and missing config never report success or le
   assert.equal((await post(unconfigured)).status, 503);
 });
 test.after(() => fs.rmSync(root, { recursive: true, force: true }));
+
+test("evidenced legacy URLs redirect once to published successors; unknown paths stay 404", async t => {
+  const legacy = require("../data/legacy-redirects.json");
+  const legacyRoot = fs.mkdtempSync(path.join(os.tmpdir(), "skyguard-legacy-test-"));
+  t.after(() => fs.rmSync(legacyRoot, { recursive: true, force: true }));
+  for (const target of new Set(Object.values(legacy))) {
+    const file = path.join(legacyRoot, target);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, "<h1>Published successor</h1>");
+  }
+  const base = await server(t, { root: legacyRoot, redirectHosts: true });
+  for (const [oldPath, target] of Object.entries(legacy)) {
+    for (const method of ["GET", "HEAD"]) {
+      const response = await fetch(base + oldPath + "?utm_source=legacy&start=3", {method, redirect: "manual"});
+      assert.equal(response.status, 308, oldPath);
+      assert.equal(response.headers.get("location"), "https://www.skyguardrs.com" + target + "?utm_source=legacy&start=3");
+      assert.equal(await response.text(), "");
+    }
+  }
+  const canonicalHost = {Host: "www.skyguardrs.com"};
+  assert.equal((await raw(base, "/index.php/blog/roofing-dfw/unknown", canonicalHost)).status, 404);
+  const [oldPath, target] = Object.entries(legacy)[0];
+  fs.rmSync(path.join(legacyRoot, target));
+  assert.equal((await raw(base, oldPath, canonicalHost)).status, 404, "Missing successor must not redirect");
+});
