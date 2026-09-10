@@ -4,11 +4,11 @@
   "phone": "+1-682-330-5088",
   "phoneDisplay": "(682) 330-5088",
   "email": "office@skyguardrs.com",
-  "streetAddress": "4500 Mercantile Plaza, Suite 300",
+  "streetAddress": "1500 North Main Street, Suite 231",
   "city": "Fort Worth",
   "region": "TX",
-  "postalCode": "76137",
-  "hours": "Monday\u2013Friday 8am\u20136pm; Saturday 9am\u20132pm",
+  "postalCode": "76164",
+  "hours": "Monday–Friday 8am–6pm; Saturday 9am–2pm",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -41,7 +41,7 @@
       "url": "https://www.youtube.com/@SkyGuardRSOffice"
     }
   ],
-  "factStatus": "Existing published Contact details; owner verification pending. Address does not establish Google Business Profile eligibility.",
+  "factStatus": "Street address, suite and city confirmed by owner September 10, 2026; ZIP 76164 corroborated by the matching Fort Worth Chamber profile. Existing published hours retained pending separate owner confirmation. Address does not establish Google Business Profile eligibility.",
   "publicProfiles": [
     {
       "label": "Fort Worth Chamber business profile",

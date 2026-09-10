@@ -1,6 +1,6 @@
 # SkyGuard listing packet and outreach drafts
 
-Prepared September 8, 2026. Drafts only; no accounts created, submissions, purchases or outreach sent.
+Prepared September 8, 2026; address updated following owner confirmation September 10, 2026. Drafts only; no accounts created, submissions, purchases or outreach sent.
 
 ## Business information
 
@@ -8,8 +8,8 @@ Prepared September 8, 2026. Drafts only; no accounts created, submissions, purch
 - Website: https://www.skyguardrs.com/
 - Phone: (682) 330-5088
 - Email: office@skyguardrs.com
-- Existing published address: 4500 Mercantile Plaza, Suite 300, Fort Worth, TX 76137
-- Existing published hours: Monday–Friday 8am–6pm; Saturday 9am–2pm; Sunday closed, Central time.
+- Owner-confirmed address: 1500 North Main Street, Suite 231, Fort Worth, TX 76164
+- Existing published hours (separate owner confirmation still pending): Monday–Friday 8am–6pm; Saturday 9am–2pm; Sunday closed, Central time.
 - Primary category: Roofing contractor. Add only actual secondary services.
 - Services: residential/commercial roofing, roof repair, roof replacement and storm-damage assessment; confirm specific capabilities before adding platform services.
 - Coverage: Dallas–Fort Worth. Add only cities the team actually serves; no invented Dallas office.
