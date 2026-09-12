@@ -106,6 +106,18 @@ test("scheduled nested cards removed completely; published content visible witho
   assert.doesNotMatch(result, /Future/);
   assert.match(result, /card published/);
 });
+test("page social image overrides a third-party content badge and rejects missing assets", t => {
+  const root = fixture(t);
+  fs.mkdirSync(path.join(root, "data"));
+  const metadata = path.join(root, "data/page-metadata.json");
+  fs.writeFileSync(metadata, JSON.stringify({"/": {socialImage: "/images/logo-horizontal.png"}}));
+  build({root, date: "2026-09-13"});
+  const html = fs.readFileSync(path.join(root, "dist/index.html"), "utf8");
+  for (const name of ["og:image", "twitter:image"])
+    assert.ok(html.includes(`${name}" content="https://www.skyguardrs.com/images/logo-horizontal.png"`));
+  fs.writeFileSync(metadata, JSON.stringify({"/": {socialImage: "/images/missing.png"}}));
+  assert.throws(() => build({root, date: "2026-09-13"}), /Social image must reference an existing local image/);
+});
 test("lead forms cannot submit personal data through native GET", (t) => {
   const root = fixture(t);
   fs.writeFileSync(

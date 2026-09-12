@@ -1,10 +1,10 @@
 # SkyGuard manufacturer listings and reputation actions
 
-Prepared September 10, 2026. Drafts only: no messages, submissions, purchases or new third-party backlinks were made in this release.
+Updated September 12, 2026. Drafts only: no messages, submissions, purchases or new third-party backlinks were made in this release.
 
 ## TEK call: make the listing request concrete
 
-SkyGuard already uses TEK stone-coated steel. Certification applications are pending; use the existing account/application rather than creating another one. Official entry points: [dealer program](https://www.tekroofingsystems.com/become-dealer/), [contact](https://www.tekroofingsystems.com/contact-us/), [technical resources](https://www.tekroofingsystems.com/dealer-tools/). A public contractor-profile editor, listing fee and guaranteed backlink have not been verified.
+SkyGuard already uses TEK stone-coated steel. TEK certification is not yet confirmed; use the existing account/application rather than creating another one. Official entry points: [dealer program](https://www.tekroofingsystems.com/become-dealer/), [contact](https://www.tekroofingsystems.com/contact-us/), [technical resources](https://www.tekroofingsystems.com/dealer-tools/). A public contractor-profile editor, listing fee and guaranteed backlink have not been verified.
 
 Ask the TEK contact:
 
@@ -27,15 +27,15 @@ Website: https://www.skyguardrs.com/
 
 Description: SkyGuard Roofing Solutions provides residential and commercial roofing services in Fort Worth and Dallas–Fort Worth, including roof repair, replacement, storm damage assessments and TEK stone-coated steel roofing. Contact the team to discuss your property and roofing options.
 
-Address confirmed September 10, 2026: 1500 North Main Street, Suite 231, Fort Worth, TX 76164. Hours still need separate owner confirmation before listing corrections. No certification, rating or years-of-experience assertion is included in this draft.
+Address confirmed September 10, 2026: 1500 North Main Street, Suite 231, Fort Worth, TX 76164. Hours still need separate owner confirmation before listing corrections. Owner now confirms TAMKO Pro Gold Certified Contractor, CertainTeed ShingleMaster and Home Depot Pro Referral participation. The general listing description above remains suitable when a profile has separate credential fields. No rating or years-of-experience assertion is included.
 
 ## Chamber and ribbon cutting
 
-Use the [existing Fort Worth Chamber profile](https://business.fortworthchamber.com/list/member/skyguard-roofing-solutions-50563.htm). Correct its website to HTTPS www and reconcile confirmed address/hours. Request the permitted member-logo asset; link that logo to the specific SkyGuard member profile. The site can already link to the public profile in text.
+Use the [existing Fort Worth Chamber profile](https://business.fortworthchamber.com/list/member/skyguard-roofing-solutions-50563.htm). Correct its website to HTTPS www and reconcile confirmed address/hours. The supplied widget’s official badge is now linked directly to the specific SkyGuard member profile on the credentials hub.
 
 For the ribbon cutting, obtain the actual date, venue, public RSVP/event URL and approved announcement. Ask the Chamber whether its event page, member news or follow-up photo coverage can include SkyGuard’s full business name and canonical website link. A link from SkyGuard to the Chamber is outbound; only a published Chamber link back to SkyGuard is an inbound backlink. Verify the public destination before logging a new backlink.
 
-For Azle or other chambers, first supply the existing member profile URL and logo permission. Do not claim memberships solely from an application or publish a generic organization logo as an endorsement.
+Azle membership and the owner-supplied badge are confirmed. The verified [SkyGuard Azle profile](https://business.azlechamber.com/list/member/skyguard-roofing-solutions-3520) already links back to the www website; the credentials hub links to this profile. This is an existing backlink, not one acquired in this release. For other chambers, verify membership before publishing a badge.
 
 ## Project evidence packet
 
@@ -52,3 +52,7 @@ Before automation: confirm the Google Business Profile review URL, approved send
 ## Completion ledger
 
 For each opportunity, record business/profile URL, credential evidence, submission date, publication date, actual inbound href, link attributes, cost and next renewal. A submitted application, company mention or uploaded logo is not a verified backlink. Evaluate paid memberships/sponsorships for relevant audience, leads and business benefits; do not buy ranking-link packages.
+
+## Confirmed credentials: next verification steps
+
+TAMKO Pro Gold and CertainTeed ShingleMaster are owner-confirmed and published with official program/locator resources. Obtain the exact public SkyGuard manufacturer profile URLs; those have not yet been independently located. Request HTTPS www website links through existing manufacturer accounts. Preserve the exact credential tier and review project-specific warranty terms. Home Depot Pro Referral participation is published as independent contractor network participation, not a Home Depot roofing certification. The recent attachment was a PNG of a PDF icon, not a readable certificate; add the actual certificate only when received.

@@ -1722,5 +1722,59 @@
         "bytes": 67936
       }
     ]
+  },
+  "/images/credentials/tamko-pro-gold.png": {
+    "width": 4277,
+    "height": 3602,
+    "originalBytes": 855497,
+    "fallback": "/images/credentials/tamko-pro-gold.png",
+    "variants": [
+      {
+        "src": "/images/responsive/tamko-pro-gold-240-668429039f39.webp",
+        "width": 240,
+        "height": 202,
+        "bytes": 11128
+      },
+      {
+        "src": "/images/responsive/tamko-pro-gold-480-1ce84cbf2b1d.webp",
+        "width": 480,
+        "height": 404,
+        "bytes": 22542
+      },
+      {
+        "src": "/images/responsive/tamko-pro-gold-800-2ffae2f2df3f.webp",
+        "width": 800,
+        "height": 674,
+        "bytes": 37218
+      }
+    ]
+  },
+  "/images/credentials/azle-chamber.png": {
+    "width": 200,
+    "height": 200,
+    "originalBytes": 69353,
+    "fallback": "/images/credentials/azle-chamber.png",
+    "variants": [
+      {
+        "src": "/images/responsive/azle-chamber-200-e23b2c7fcf8c.webp",
+        "width": 200,
+        "height": 200,
+        "bytes": 11968
+      }
+    ]
+  },
+  "/images/credentials/fort-worth-chamber.png": {
+    "width": 200,
+    "height": 200,
+    "originalBytes": 10844,
+    "fallback": "/images/credentials/fort-worth-chamber.png",
+    "variants": [
+      {
+        "src": "/images/responsive/fort-worth-chamber-200-07c45df61c1c.webp",
+        "width": 200,
+        "height": 200,
+        "bytes": 6012
+      }
+    ]
   }
 }
