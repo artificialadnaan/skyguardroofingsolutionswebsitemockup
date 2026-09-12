@@ -1,0 +1,17 @@
+# Credentials and affiliations implementation spec
+
+September 12, 2026. Owner supplied TAMKO Pro Gold and Azle Chamber badges, confirmed CertainTeed ShingleMaster (certificate being mailed), Fort Worth/Azle Chamber membership and Home Depot Pro Referral participation. TEK use remains confirmed; TEK certification remains unconfirmed.
+
+## Deliverables
+
+- One substantive /pages/credentials-certifications.html page, using current route architecture, unique title/meta/H1 and the existing generated RoofingContractor/WebPage/breadcrumb graph. Explain each exact program, homeowner relevance, how to check it, and project-specific warranty/insurance questions. No separate thin credential pages.
+- Publish only owner-confirmed credentials. Distinguish CertainTeed ShingleMaster from SELECT ShingleMaster, TAMKO Gold from other tiers, and Home Depot Pro Referral participation from manufacturer certification. No invented award dates, credential IDs, license, insurance limits/expiry or universal warranty eligibility. Verify program descriptions from primary sources. Do not add “16+ years,” family ownership or new team biographies solely because outside feedback suggested them.
+- Display supplied badges intact with meaningful alt, dimensions and modest display sizes. Use a verified official Fort Worth member badge if recoverable from the supplied widget. Prefer a crawlable static linked equivalent, avoiding a runtime third-party script dependency, provided the badge/link meaning is preserved. Do not fabricate missing CertainTeed/Home Depot certificates or logos. Source assets may be resized/encoded for delivery without redesigning their content.
+- Distinguish direct SkyGuard directory profiles from general program/locator links in visible labels. Verify Azle profile by business name, phone and website before adding to organization sameAs. No manufacturer self-link represented as a new inbound backlink. No submissions, purchases or outreach messages.
+- Add a compact homepage credentials strip linked to the page, prominent About link/section, Fort Worth and residential/commercial relevant links, and generated footer company link. Preserve current homepage title/H1 and specialty-page copy. Avoid broad new city/service pages without real project evidence.
+- Verify live current pages and code against allegations: old address/ZIP/email, TDLR/statewide roofing license, unconditional satisfaction/24-hour response/settlements, numerical energy savings. Correct actual remaining production/source defects; document stale cached allegations separately. Keep owner-confirmed North Main address, office email and existing hours pending hours confirmation.
+- Recheck generated sitemap, canonical/schema, AI/search robots, known legacy redirects and public versus private files. Address/sitemap/index-cache refresh instructions should use www HTTPS. DNS remains provider-dependent; no blind DNS migration or search-index ranking claims.
+
+## Acceptance
+
+Existing automated/build/link/image/crawler checks pass; allnew local links andbadgeassetsresolve. Independent spec/claims review before release. Browser visual QA for homepage, About and credentials at desktop/mobile; keyboard badge links and CTAs work, no missing alt or horizontaloverflow, no runtime Chamber widget requests or real lead messages. PR/CI then merge/deploy under ongoing website authorization; verify all live pages equal local build and new badgeassets/content/schema.

@@ -208,6 +208,7 @@ function build(options = {}) {
   ];
   const company = [
     ["/pages/about.html", "About"],
+    ["/pages/credentials-certifications.html", "Credentials & Affiliations"],
     ["/pages/service-areas.html", "DFW Service Areas"],
     ["/pages/roofing-fort-worth.html", "Fort Worth Roofing"],
     ["/pages/roofing-dallas.html", "Dallas Roofing"],
@@ -373,7 +374,9 @@ function build(options = {}) {
         set("srcset", variants.map((v) => `${v.src} ${v.width}w`).join(", "));
         set(
           "sizes",
-          hero
+          /\bcredential-badge\b/.test(at.class || "")
+            ? "200px"
+            : hero
             ? "100vw"
             : card
               ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
@@ -407,7 +410,12 @@ function build(options = {}) {
         .match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]
         ?.replace(/<[^>]*>/g, "") || page.title,
     );
-    const sourceImage =
+    if (page.socialImage &&
+        (!/^\/images\/[\w./-]+$/.test(page.socialImage) ||
+         page.socialImage.split("/").includes("..") ||
+         !fs.existsSync(path.join(root, page.socialImage))))
+      throw new Error("Social image must reference an existing local image: " + page.route);
+    const sourceImage = page.socialImage ||
       attrs(htmlMain.match(/<img\b[^>]*>/i)?.[0] || "").src ||
       "/images/hero-residential.png";
     const graph = [
