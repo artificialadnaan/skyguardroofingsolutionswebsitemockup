@@ -1,6 +1,6 @@
 # SkyGuard manufacturer listings and reputation actions
 
-Updated September 12, 2026. Drafts only: no messages, submissions, purchases or new third-party backlinks were made in this release.
+Updated September 18, 2026. Drafts only: no messages, submissions, purchases or new third-party backlinks were made in this release.
 
 ## TEK call: make the listing request concrete
 
@@ -27,7 +27,7 @@ Website: https://www.skyguardrs.com/
 
 Description: SkyGuard Roofing Solutions provides residential and commercial roofing services in Fort Worth and Dallas–Fort Worth, including roof repair, replacement, storm damage assessments and TEK stone-coated steel roofing. Contact the team to discuss your property and roofing options.
 
-Address confirmed September 10, 2026: 1500 North Main Street, Suite 231, Fort Worth, TX 76164. Hours still need separate owner confirmation before listing corrections. Owner now confirms TAMKO Pro Gold Certified Contractor, CertainTeed ShingleMaster and Home Depot Pro Referral participation. The general listing description above remains suitable when a profile has separate credential fields. No rating or years-of-experience assertion is included.
+Address confirmed September 10, 2026: 1500 North Main Street, Suite 231, Fort Worth, TX 76164. Hours confirmed in owner-provided correspondence: Monday–Saturday 7am–7pm, Central time. Owner now confirms TAMKO Pro Gold Certified Contractor, CertainTeed ShingleMaster and Home Depot Pro Referral participation. The general listing description above remains suitable when a profile has separate credential fields. No rating or years-of-experience assertion is included.
 
 ## Chamber and ribbon cutting
 
@@ -55,4 +55,4 @@ For each opportunity, record business/profile URL, credential evidence, submissi
 
 ## Confirmed credentials: next verification steps
 
-TAMKO Pro Gold and CertainTeed ShingleMaster are owner-confirmed and published with official program/locator resources. Obtain the exact public SkyGuard manufacturer profile URLs; those have not yet been independently located. Request HTTPS www website links through existing manufacturer accounts. Preserve the exact credential tier and review project-specific warranty terms. Home Depot Pro Referral participation is published as independent contractor network participation, not a Home Depot roofing certification. The recent attachment was a PNG of a PDF icon, not a readable certificate; add the actual certificate only when received.
+TAMKO Pro Gold and CertainTeed ShingleMaster are owner-confirmed and published with official program/locator resources. Obtain the exact public SkyGuard manufacturer profile URLs; those have not yet been independently located. Request HTTPS www website links through existing manufacturer accounts. Preserve the exact credential tier and review project-specific warranty terms. Home Depot Pro Referral participation is published as independent contractor network participation, not a Home Depot roofing certification. The TAMKO certificate is now readable: Pro Gold since January 23, 2026, PRO ID 172630, subject to annual recertification. It carries an older address; request a reissued certificate with the current North Main office before displaying the document. The page now publishes the verified credential details. The CertainTeed certificate remains outstanding.
