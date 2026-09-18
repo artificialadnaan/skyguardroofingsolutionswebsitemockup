@@ -1,8 +1,23 @@
 # Organic traffic and SEO measurement
 
-## Status — 2026-09-18
+## Activation — 2026-09-18
 
-Website tracking is prepared, but **collection is not active**. Production has neither `ANALYTICS_MEASUREMENT_ID` nor `ANALYTICS_MANUAL_MEASUREMENT_VERIFIED` configured. The accessible Google Analytics page showed an unrelated property; no SkyGuard property has been verified. Browser access subsequently failed. No Google account/property settings, key events, Search Console links or dashboards have been changed. Do not claim historical traffic or SEO gains from this work.
+Created a dedicated account and GA4 property, both named **SkyGuard Roofing Solutions**.
+
+- Account: `408629828`; property: `554929193`.
+- Website stream: `15803397898` — `https://www.skyguardrs.com`.
+- Measurement ID: `G-ZCV2CRSKGB`; Google tag: `GT-TNCSHVZV`.
+- Reporting timezone: America/Chicago; currency: USD.
+- Business objectives: Generate leads and Understand web/app traffic. Industry: Home & Garden; small business size selected based on available company context.
+- Optional account data-sharing features disabled. Enhanced Measurement off; user-provided data capabilities off and saved state rechecked.
+- `generate_lead` created with code, marked as a key event, once per event, no invented monetary value. Existing Google defaults for purchase/qualify/close do not receive site events.
+- Consent-gated page-view test accepted by Google (HTTP 204); zero collect requests before opt-in. Campaign `internal / test / analytics_validation` distinguishes setup traffic. Synthetic email/query/fragment were absent from the outgoing payload.
+- Production variables set to the verified measurement ID and manual measurement enabled. Deployment and live verification recorded in the workspace release log.
+- Search Console URL-prefix property initiated; this release installs its ownership meta tag on the homepage. Completion of verification, linking and sitemap submission must be recorded after Google's confirmation.
+
+Analytics home: https://analytics.google.com/analytics/web/#/a408629828p554929193/reports/intelligenthome
+
+No historical GA4 visits or SEO gains were invented. Reporting begins after activation and visitor consent. The original checklist below remains the operational reference; see the workspace release record for final verified status.
 
 ## Activation checklist
 
