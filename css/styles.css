@@ -1756,6 +1756,7 @@ section[id], form[id] { scroll-margin-top: 100px; }
 .credential-card p { color: #40516b; line-height: 1.8; margin-bottom: 1rem; }
 .credential-card a { color: #006277; text-decoration: underline; text-underline-offset: .2em; }
 .credential-badge { display: block; height: 140px; width: auto; max-width: 100%; object-fit: contain; margin: 0 0 1.5rem; }
+#fort-worth-chamber .credential-badge { height: 200px; }
 @media (max-width: 720px) { .credential-grid { grid-template-columns: 1fr; } }
 
 .credential-card:last-child { grid-column: 1 / -1; }
