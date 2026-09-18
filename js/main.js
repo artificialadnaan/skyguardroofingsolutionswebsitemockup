@@ -276,7 +276,8 @@ document.addEventListener("DOMContentLoaded", () => {
       for (const key of formType === "contact"
         ? contactFields
         : careersFields) {
-        const value = fields.get(key);
+        // Avoid the organization/company identifiers that browser autofill may populate.
+        const value = fields.get(key === "company" ? "contact_check" : key);
         if (typeof value === "string") payload[key] = value.trim();
       }
       if (formType === "contact") {
@@ -310,6 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ formType, payload, ...(submissionId ? {submissionId} : {}) }),
           signal: controller.signal,
         });
+        if (response.status === 422) throw Error("form_check");
         if (response.status !== 202) throw Error("Submission failed");
         form.reset();
         updateContactChoice();
@@ -323,10 +325,11 @@ document.addEventListener("DOMContentLoaded", () => {
           metrics?.event("generate_lead", {
             form: form.dataset.requestContext ? "inspection" : "contact",
           });
-      } catch {
+      } catch (error) {
         status.classList.add("error");
-        status.textContent =
-          "We could not send your request. Please try again or call (682) 330-5088.";
+        status.textContent = error.message === "form_check"
+          ? "Your request was not sent. Please reload this page and try again, or call (682) 330-5088."
+          : "We could not send your request. Please try again or call (682) 330-5088.";
         if (formType === "contact")
           metrics?.event("form_error", {
             form: form.dataset.requestContext ? "inspection" : "contact",

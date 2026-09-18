@@ -171,7 +171,7 @@ function createServer(options = {}) {
         payload[key] = input[key].trim();
       }
     }
-    if (payload.company) return json(res, 202, { ok: true });
+    if (payload.company) return json(res, 422, { error: "Reload the form and try again" });
     if (
       !payload.name ||
       (!payload.phone && !payload.email) ||
@@ -202,7 +202,7 @@ function createServer(options = {}) {
         body: JSON.stringify({ formType: body.formType, payload, ...(body.formType === "contact" && body.submissionId ? {submissionId:body.submissionId} : {}) }),
         signal: AbortSignal.timeout(timeout),
       });
-      if (!upstream.ok)
+      if (upstream.status !== 202)
         return json(res, 502, { error: "Could not send your message" });
       await upstream.body?.cancel();
       return json(res, 202, { ok: true });

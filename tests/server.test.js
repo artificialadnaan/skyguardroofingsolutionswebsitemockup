@@ -166,7 +166,7 @@ test("contact and careers remain compatible; token stays upstream; attribution s
   assert.equal(career.status, 202);
   assert.equal(JSON.parse(seen[1].opts.body).formType, "careers");
 });
-test("honeypot discarded; invalid input never forwarded", async (t) => {
+test("filled spam check returns an error, never false success; invalid input never forwarded", async (t) => {
   let requests = 0;
   const base = await server(t, {
     token: "test",
@@ -176,9 +176,9 @@ test("honeypot discarded; invalid input never forwarded", async (t) => {
     },
   });
   assert.equal(
-    (await post(base, { formType: "contact", payload: { company: "Bot" } }))
+    (await post(base, { formType: "contact", payload: { ...valid.payload, company: "Autofilled company" } }))
       .status,
-    202,
+    422,
   );
   for (const body of [
     "{bad",
@@ -221,6 +221,7 @@ test("contact choice accepts one valid method and rejects mismatches; careers st
 });
 test("upstream failures, timeouts, and missing config never report success or leak details", async (t) => {
   for (const scenario of [
+    async () => new Response("unexpected HTML success", { status: 200 }),
     async () => new Response("secret private upstream", { status: 500 }),
     async () => {
       throw new Error("secret network");
