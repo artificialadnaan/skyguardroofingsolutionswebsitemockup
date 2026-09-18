@@ -273,6 +273,22 @@ test("internal links do not replace session acquisition with self-referrals", ()
     assert.equal(config.campaign_medium, undefined);
   }
 });
+test("consented inquiry attribution survives internal navigation, expires and clears on revocation", () => {
+  const values = new Map();
+  const storage = {getItem:key=>values.get(key)||null,setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)};
+  const first = configuredBrowser(undefined,{storage,referrer:'https://www.google.com/search?q=private'});
+  assert.equal(values.has('skyguard-inquiry-source-v1'),false);
+  first.win.SkyGuardMetrics.setConsent(true);
+  const next = configuredBrowser(undefined,{storage,referrer:'https://www.skyguardrs.com/'});
+  assert.equal(next.win.SkyGuardMetrics.attribution().referrerHost,'www.google.com');
+  assert.doesNotMatch(values.get('skyguard-inquiry-source-v1'),/private|search\?q/);
+  next.win.SkyGuardMetrics.setConsent(false);
+  assert.equal(values.has('skyguard-inquiry-source-v1'),false);
+  assert.equal(next.win.SkyGuardMetrics.attribution().referrerHost,undefined);
+  values.set('skyguard-inquiry-source-v1',JSON.stringify({context:{source:'google',medium:'organic'},expires:Date.now()-1}));
+  next.win.SkyGuardMetrics.setConsent(true);
+  assert.equal(next.win.SkyGuardMetrics.attribution().source,undefined);
+});
 test("consent survives navigation, expires within a day, and revocation persists", () => {
   const values = new Map();
   const storage = {

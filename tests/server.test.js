@@ -147,6 +147,8 @@ test("contact and careers remain compatible; token stays upstream; attribution s
   const forwarded = JSON.parse(seen[0].opts.body);
   assert.match(forwarded.payload.message, /source: google/);
   assert.match(forwarded.payload.message, /landingPath:/);
+  assert.equal(forwarded.payload.attribution.source, "google");
+  assert.equal(forwarded.payload.attribution.campaign, undefined);
   assert.doesNotMatch(forwarded.payload.message, /person@example|secret/);
   assert.equal(seen[0].opts.headers["x-website-token"], "test-only-secret");
   const career = await post(base, {

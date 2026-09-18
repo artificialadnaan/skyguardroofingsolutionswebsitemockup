@@ -109,6 +109,28 @@
       initialized = false;
     const disabledKey = "ga-disable-" + id;
     const consentKey = "skyguard-analytics-choice-v1";
+    const acquisitionKey = "skyguard-inquiry-source-v1";
+    let inquiryContext = { ...context };
+    function rememberAcquisition(allowed) {
+      inquiryContext = { ...context };
+      try {
+        if (!allowed) { win.sessionStorage.removeItem(acquisitionKey); return; }
+        const stored = JSON.parse(win.sessionStorage.getItem(acquisitionKey));
+        const source = stored?.context;
+        if (!context.referrerHost && !context.source && !context.medium && !context.campaign &&
+            Number.isFinite(stored?.expires) && stored.expires > Date.now() &&
+            stored.expires <= Date.now() + 1800000 && source && typeof source === "object") {
+          const clean = {};
+          if (knownPath(source.landingPath)) clean.landingPath = source.landingPath;
+          if (typeof source.referrerHost === "string" && /^(?:[a-z0-9-]+\.)+[a-z]{2,24}$/i.test(source.referrerHost) && source.referrerHost.length <= 120)
+            clean.referrerHost = source.referrerHost;
+          for (const key of ["source", "medium", "campaign"])
+            if (slug(source[key])) clean[key] = source[key];
+          inquiryContext = clean;
+        }
+        win.sessionStorage.setItem(acquisitionKey, JSON.stringify({context:inquiryContext,expires:Date.now()+1800000}));
+      } catch { /* Without storage, use only this page's referral context. */ }
+    }
     if (id) win[disabledKey] = true;
     function rememberedConsent() {
       try {
@@ -142,6 +164,7 @@
       const previous = consent;
       consent = allowed === true;
       if (!id) return;
+      rememberAcquisition(consent);
       if (remember) {
         try {
           win.sessionStorage.setItem(consentKey, JSON.stringify({
@@ -209,7 +232,7 @@
       box.setAttribute("aria-label", "Optional analytics");
       const text = doc.createElement("p");
       text.textContent =
-        "Allow Google Analytics to measure visits, traffic sources and inquiries? Form details are excluded. We remember your choice in this browser tab for up to 24 hours. You can change it using Analytics preferences in the footer.";
+        "Allow Google Analytics to measure visits, traffic sources and inquiries? Form details are excluded. We remember your choice in this tab for up to 24 hours and referral context for inquiries for up to 30 minutes of inactivity. Change your choice using Analytics preferences in the footer.";
       box.appendChild(text);
       for (const [label, allowed] of [
         ["Allow analytics", true],
@@ -245,7 +268,7 @@
       event,
       setConsent,
       preferences,
-      attribution: () => ({ ...context }),
+      attribution: () => ({ ...inquiryContext }),
     };
     if (doc.readyState === "loading")
       doc.addEventListener("DOMContentLoaded", ready);
