@@ -78,36 +78,15 @@
           <!-- Contact Form -->
           <div class="fade-up">
             <h2 class="section-title" style="margin-bottom:1.5rem;">Send Us a Message</h2>
-            <p>For a roofing assessment, you can also <a href="/pages/inspections.html#request-inspection">request an inspection directly</a>. Fields marked * are required.</p><form id="contact-form">
+            <p>For a roofing assessment, you can also <a href="/pages/inspections.html#request-inspection">request an inspection directly</a>. Choose a phone call or email response. Only your name and chosen contact method are required.</p><form id="contact-form">
               <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-name">Name <span style="color:#e74c3c;">*</span></label>
-                  <input type="text" id="contact-name" name="name" required placeholder="Your full name" maxlength="120" autocomplete="name">
-                </div>
-                <div class="form-group">
-                  <label for="contact-phone">Phone <span style="color:#e74c3c;">*</span></label>
-                  <input type="tel" id="contact-phone" name="phone" required placeholder="(555) 123-4567" maxlength="40" autocomplete="tel">
-                </div>
+                <div class="form-group"><label for="contact-name">Name (required)</label><input type="text" id="contact-name" name="name" required maxlength="120" autocomplete="name"></div>
+                <div class="form-group"><label for="contact-preference">How should we contact you?</label><select id="contact-preference" name="preferredContact"><option value="phone">Call me</option><option value="email">Email me</option></select></div>
               </div>
               <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-email">Email <span style="color:#e74c3c;">*</span></label>
-                  <input type="email" id="contact-email" name="email" required placeholder="you@example.com" maxlength="254" autocomplete="email">
-                </div>
-                <div class="form-group">
-                  <label for="contact-address">Address</label>
-                  <input type="text" id="contact-address" name="address" placeholder="Street address" maxlength="200" autocomplete="street-address">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-city">City</label>
-                  <input type="text" id="contact-city" name="city" placeholder="City" maxlength="100" autocomplete="address-level2">
-                </div>
-                <div class="form-group">
-                  <label for="contact-state-zip">State / ZIP</label>
-                  <input type="text" id="contact-state-zip" name="state_zip" placeholder="State and ZIP code" maxlength="30" autocomplete="postal-code">
-                </div>
+                <div class="form-group"><label for="contact-phone">Phone</label><input type="tel" id="contact-phone" name="phone" maxlength="40" autocomplete="tel"></div>
+                <div class="form-group"><label for="contact-email">Email</label><input type="email" id="contact-email" name="email" maxlength="254" autocomplete="email"></div>
+                <div class="form-group"><label for="contact-city">Property city (optional)</label><input type="text" id="contact-city" name="city" maxlength="100" autocomplete="address-level2"></div>
               </div>
               <div class="form-group">
                 <label for="contact-message">Message (optional)</label>
