@@ -1,6 +1,6 @@
 {
   "/": {
-    "dateModified": "2026-09-12"
+    "dateModified": "2026-09-18"
   },
   "/pages/contact.html": {
     "dateModified": "2026-09-10"
@@ -12,10 +12,10 @@
     "dateModified": "2026-09-10"
   },
   "/pages/roof-replacement.html": {
-    "dateModified": "2026-09-10"
+    "dateModified": "2026-09-18"
   },
   "/pages/roofing-fort-worth.html": {
-    "dateModified": "2026-09-12"
+    "dateModified": "2026-09-18"
   },
   "/pages/services.html": {
     "dateModified": "2026-09-10"
@@ -33,10 +33,13 @@
     "dateModified": "2026-09-12"
   },
   "/pages/credentials-certifications.html": {
-    "dateModified": "2026-09-12",
+    "dateModified": "2026-09-18",
     "socialImage": "/images/logo-horizontal.png"
   },
   "/pages/commercial-roofing.html": {
     "dateModified": "2026-09-12"
+  },
+  "/pages/inspections.html": {
+    "dateModified": "2026-09-18"
   }
 }

@@ -8,7 +8,7 @@
   "city": "Fort Worth",
   "region": "TX",
   "postalCode": "76164",
-  "hours": "Monday–Friday 8am–6pm; Saturday 9am–2pm",
+  "hours": "Monday–Saturday 7am–7pm",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -17,16 +17,11 @@
         "Tuesday",
         "Wednesday",
         "Thursday",
-        "Friday"
+        "Friday",
+        "Saturday"
       ],
-      "opens": "08:00",
-      "closes": "18:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "09:00",
-      "closes": "14:00"
+      "opens": "07:00",
+      "closes": "19:00"
     }
   ],
   "socialProfiles": [
@@ -41,7 +36,7 @@
       "url": "https://www.youtube.com/@SkyGuardRSOffice"
     }
   ],
-  "factStatus": "Street address, suite and city confirmed by owner September 10, 2026; ZIP 76164 corroborated by the matching Fort Worth Chamber profile. Existing published hours retained pending separate owner confirmation. Address does not establish Google Business Profile eligibility.",
+  "factStatus": "Street address, suite and city confirmed by owner September 10, 2026; ZIP 76164 corroborated by matching Chamber profiles. Monday–Saturday 7am–7pm confirmed in owner-supplied correspondence reviewed September 18, 2026. No Sunday hours supplied. Address does not establish Google Business Profile eligibility.",
   "publicProfiles": [
     {
       "label": "Fort Worth Chamber business profile",
