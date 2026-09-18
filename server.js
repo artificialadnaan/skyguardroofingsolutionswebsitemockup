@@ -56,8 +56,8 @@ function json(res, status, body) {
   res.end(data);
 }
 function attribution(input, root) {
-  if (!input || typeof input !== "object" || Array.isArray(input)) return "";
-  const output = [];
+  if (!input || typeof input !== "object" || Array.isArray(input)) return {};
+  const output = {};
   for (const key of [
     "landingPath",
     "landingPage",
@@ -90,11 +90,9 @@ function attribution(input, root) {
       if (!/^[a-z][a-z .'-]{0,79}$/i.test(value)) continue;
     } else if (!/^[a-z][a-z0-9_-]{0,49}$/i.test(value) || /\d{5,}/.test(value))
       continue;
-    output.push(`${key}: ${value}`);
+    output[key] = value;
   }
-  return output.length
-    ? "\n\nWebsite referral context:\n" + output.join("\n")
-    : "";
+  return output;
 }
 function createServer(options = {}) {
   const root = path.resolve(options.root || path.join(__dirname, "dist"));
@@ -161,6 +159,9 @@ function createServer(options = {}) {
       Array.isArray(body.payload)
     )
       return json(res, 400, { error: "Invalid request" });
+    if (body.submissionId !== undefined &&
+      (typeof body.submissionId !== "string" || !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(body.submissionId)))
+      return json(res, 400, { error: "Invalid submission identifier" });
     const input = body.payload;
     const payload = {};
     for (const [key, max] of Object.entries(FIELDS[body.formType])) {
@@ -187,8 +188,10 @@ function createServer(options = {}) {
     if (!token)
       return json(res, 503, { error: "Form is temporarily unavailable" });
     const messageField = body.formType === "contact" ? "message" : "info";
-    payload[messageField] =
-      (payload[messageField] || "") + attribution(input.attribution, root);
+    const details = attribution(input.attribution, root);
+    if (body.formType === "contact") payload.attribution = details;
+    payload[messageField] = (payload[messageField] || "") +
+      (Object.keys(details).length ? "\n\nWebsite referral context:\n" + Object.entries(details).map(([key,value])=>`${key}: ${value}`).join("\n") : "");
     try {
       const upstream = await fetchUpstream(upstreamUrl, {
         method: "POST",
@@ -196,7 +199,7 @@ function createServer(options = {}) {
           "Content-Type": "application/json",
           "x-website-token": token,
         },
-        body: JSON.stringify({ formType: body.formType, payload }),
+        body: JSON.stringify({ formType: body.formType, payload, ...(body.formType === "contact" && body.submissionId ? {submissionId:body.submissionId} : {}) }),
         signal: AbortSignal.timeout(timeout),
       });
       if (!upstream.ok)

@@ -259,6 +259,8 @@ document.addEventListener("DOMContentLoaded", () => {
     status.setAttribute("aria-live", "polite");
     form.appendChild(status);
     let pending = false;
+    let submissionId;
+    let submissionContent;
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (pending) return;
@@ -296,16 +298,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const controller = new AbortController(),
         timer = setTimeout(() => controller.abort(), 20000);
+      const content = JSON.stringify(payload);
+      if (formType === "contact" && (content !== submissionContent || !submissionId)) {
+        submissionContent = content;
+        submissionId = window.crypto?.randomUUID?.();
+      }
       try {
         const response = await fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ formType, payload }),
+          body: JSON.stringify({ formType, payload, ...(submissionId ? {submissionId} : {}) }),
           signal: controller.signal,
         });
         if (response.status !== 202) throw Error("Submission failed");
         form.reset();
         updateContactChoice();
+        submissionId = undefined;
+        submissionContent = undefined;
         status.textContent =
           formType === "careers"
             ? "Thanks for applying. We will contact you if an opening matches your qualifications."
