@@ -204,6 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function wire(selector, formType) {
     const form = document.querySelector(selector);
     if (!form) return;
+    const requestedService = new URLSearchParams(window.location.search).get("service");
+    const serviceField = form.querySelector('select[name="service"]');
+    if (serviceField && [...serviceField.options].some(option => option.value === requestedService))
+      serviceField.value = requestedService;
     const button = form.querySelector('button[type="submit"]');
     if (!button) return;
     const original = button.textContent;
