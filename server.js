@@ -28,6 +28,7 @@ const FIELDS = {
     name: 160,
     phone: 40,
     email: 254,
+    preferredContact: 5,
     address: 300,
     city: 100,
     state_zip: 100,
@@ -173,14 +174,17 @@ function createServer(options = {}) {
     if (payload.company) return json(res, 202, { ok: true });
     if (
       !payload.name ||
-      !payload.phone ||
-      !payload.email ||
-      !/^\+?[\d\s().-]{7,40}$/.test(payload.phone) ||
-      payload.phone.replace(/\D/g, "").length < 7 ||
-      payload.phone.replace(/\D/g, "").length > 15 ||
-      !/^\S+@[^\s@]+\.[^\s@]+$/.test(payload.email)
+      (!payload.phone && !payload.email) ||
+      (body.formType === "careers" && (!payload.phone || !payload.email)) ||
+      (payload.phone && (!/^\+?[\d\s().-]{7,40}$/.test(payload.phone) ||
+        payload.phone.replace(/\D/g, "").length < 7 ||
+        payload.phone.replace(/\D/g, "").length > 15)) ||
+      (payload.email && !/^\S+@[^\s@]+\.[^\s@]+$/.test(payload.email)) ||
+      (payload.preferredContact && !["phone", "email"].includes(payload.preferredContact)) ||
+      (payload.preferredContact === "phone" && !payload.phone) ||
+      (payload.preferredContact === "email" && !payload.email)
     )
-      return json(res, 400, { error: "Name, phone and email are required" });
+      return json(res, 400, { error: "Provide your name and a valid contact method" });
     if (!token)
       return json(res, 503, { error: "Form is temporarily unavailable" });
     const messageField = body.formType === "contact" ? "message" : "info";

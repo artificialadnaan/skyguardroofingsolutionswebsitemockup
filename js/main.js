@@ -185,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "name",
     "phone",
     "email",
+    "preferredContact",
     "address",
     "city",
     "state_zip",
@@ -204,9 +205,27 @@ document.addEventListener("DOMContentLoaded", () => {
   function wire(selector, formType) {
     const form = document.querySelector(selector);
     if (!form) return;
+    const requestedService = new URLSearchParams(window.location.search).get("service");
+    const serviceField = form.querySelector('select[name="service"]');
+    if (serviceField && [...serviceField.options].some(option => option.value === requestedService))
+      serviceField.value = requestedService;
     const button = form.querySelector('button[type="submit"]');
     if (!button) return;
     const original = button.textContent;
+    const preference = form.querySelector('[name="preferredContact"]');
+    function updateContactChoice() {
+      if (!preference) return;
+      for (const name of ["phone", "email"]) {
+        const field = form.querySelector('[name="' + name + '"]');
+        const group = field.closest(".form-group");
+        const selected = preference.value === name;
+        group.hidden = !selected;
+        field.disabled = !selected;
+        field.required = selected;
+      }
+    }
+    preference?.addEventListener("change", updateContactChoice);
+    updateContactChoice();
     const limits = {
       name: 160,
       phone: 40,
@@ -293,6 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         if (response.status !== 202) throw Error("Submission failed");
         form.reset();
+        updateContactChoice();
         submissionId = undefined;
         submissionContent = undefined;
         status.textContent =
