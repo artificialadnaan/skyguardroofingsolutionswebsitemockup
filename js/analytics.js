@@ -38,10 +38,20 @@
       if (url.pathname === canon.pathname && knownPath(canon.pathname))
         result.landingPath = canon.pathname;
       const host = hostname(referrer);
-      if (host && host !== canon.hostname) result.referrerHost = host;
+      if (host && ![canon.hostname, "skyguardrs.com"].includes(host))
+        result.referrerHost = host;
       for (const key of ["source", "medium", "campaign"]) {
         const value = slug(url.searchParams.get("utm_" + key));
         if (value) result[key] = value;
+      }
+      // Preserve paid-search classification without collecting advertising click IDs.
+      // Facebook's fbclid also occurs on unpaid links, so it is not treated as paid.
+      if (["gclid", "gbraid", "wbraid"].some((key) => url.searchParams.get(key))) {
+        result.source = "google";
+        result.medium = "cpc";
+      } else if (url.searchParams.get("msclkid")) {
+        result.source = "bing";
+        result.medium = "cpc";
       }
       return result;
     } catch {
@@ -89,6 +99,7 @@
     // requires the property review documented in .env.example, plus visitor consent.
     const id =
       canon &&
+      new URL(win.location.href).origin === "https://www.skyguardrs.com" &&
       config.manualMeasurementVerified === true &&
       typeof config.measurementId === "string" &&
       /^G-[A-Z0-9]{5,20}$/.test(config.measurementId)
@@ -97,7 +108,20 @@
     let consent = false,
       initialized = false;
     const disabledKey = "ga-disable-" + id;
+    const consentKey = "skyguard-analytics-choice-v1";
     if (id) win[disabledKey] = true;
+    function rememberedConsent() {
+      try {
+        const choice = JSON.parse(win.sessionStorage.getItem(consentKey));
+        if (
+          typeof choice?.allowed === "boolean" &&
+          Number.isFinite(choice.expires) &&
+          choice.expires > Date.now() &&
+          choice.expires <= Date.now() + 86400000
+        ) return choice.allowed;
+      } catch { /* Storage can be unavailable in private or restricted browsers. */ }
+      return null;
+    }
     function event(name, details = {}) {
       if (!id || !consent || !initialized) return;
       const clean = safeEvent(name, {
@@ -114,10 +138,18 @@
         send_to: id,
       });
     }
-    function setConsent(allowed) {
+    function setConsent(allowed, remember = true) {
       const previous = consent;
       consent = allowed === true;
       if (!id) return;
+      if (remember) {
+        try {
+          win.sessionStorage.setItem(consentKey, JSON.stringify({
+            allowed: consent,
+            expires: Date.now() + 86400000,
+          }));
+        } catch { /* Keep the choice for this page if storage is unavailable. */ }
+      }
       // Official Google opt-out switch prevents subsequent collection after revocation:
       // https://developers.google.com/tag-platform/security/guides/privacy
       win[disabledKey] = !consent;
@@ -153,9 +185,12 @@
         send_page_view: false,
         allow_google_signals: false,
         allow_ad_personalization_signals: false,
-        ignore_referrer: true,
+        ignore_referrer: false,
         page_location: canon,
-        page_referrer: "",
+        page_referrer: context.referrerHost ? "https://" + context.referrerHost + "/" : "",
+        ...(context.source ? { campaign_source: context.source } : {}),
+        ...(context.medium ? { campaign_medium: context.medium } : {}),
+        ...(context.campaign ? { campaign_name: context.campaign } : {}),
         cookie_expires: 86400,
         cookie_update: false,
       });
@@ -174,7 +209,7 @@
       box.setAttribute("aria-label", "Optional analytics");
       const text = doc.createElement("p");
       text.textContent =
-        "Allow optional analytics to help us understand which pages are useful? Your form details are excluded. Your choice applies to this page visit.";
+        "Allow Google Analytics to measure visits, traffic sources and inquiries? Form details are excluded. We remember your choice in this browser tab for up to 24 hours. You can change it using Analytics preferences in the footer.";
       box.appendChild(text);
       for (const [label, allowed] of [
         ["Allow analytics", true],
@@ -193,7 +228,9 @@
     }
     function ready() {
       if (!id) return;
-      preferences();
+      const choice = rememberedConsent();
+      if (choice === null) preferences();
+      else setConsent(choice, false);
       if (!doc.getElementById("analytics-preferences")) {
         const button = doc.createElement("button");
         button.id = "analytics-preferences";
