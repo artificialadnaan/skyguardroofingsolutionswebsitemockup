@@ -182,7 +182,7 @@ test("honeypot discarded; invalid input never forwarded", async (t) => {
     "{bad",
     null,
     { formType: "inspection", payload: valid.payload },
-    { formType: "contact", payload: { ...valid.payload, email: "" } },
+    { formType: "contact", payload: { ...valid.payload, email: "", phone: "" } },
     { formType: "contact", payload: { ...valid.payload, name: [] } },
   ])
     assert.equal((await post(base, body)).status, 400);
@@ -196,6 +196,26 @@ test("honeypot discarded; invalid input never forwarded", async (t) => {
     ).status,
     413,
   );
+});
+test("contact choice accepts one valid method and rejects mismatches; careers still needs both", async (t) => {
+  const seen = [];
+  const base = await server(t, { token: "test", fetch: async (_, opts) => {
+    seen.push(JSON.parse(opts.body)); return new Response("{}", { status: 202 });
+  }});
+  for (const payload of [
+    { name: "Test", phone: "6825550100", preferredContact: "phone" },
+    { name: "Test", email: "test@example.com", preferredContact: "email" },
+  ]) assert.equal((await post(base, { formType: "contact", payload })).status, 202);
+  assert.equal(seen[0].payload.email, undefined);
+  assert.equal(seen[1].payload.phone, undefined);
+  for (const payload of [
+    { name: "Test" },
+    { name: "Test", phone: "invalid" },
+    { name: "Test", email: "invalid" },
+    { name: "Test", email: "test@example.com", preferredContact: "phone" },
+  ]) assert.equal((await post(base, { formType: "contact", payload })).status, 400);
+  assert.equal((await post(base, { formType: "careers", payload: { name: "Test", phone: "6825550100" } })).status, 400);
+  assert.equal(seen.length, 2);
 });
 test("upstream failures, timeouts, and missing config never report success or leak details", async (t) => {
   for (const scenario of [
