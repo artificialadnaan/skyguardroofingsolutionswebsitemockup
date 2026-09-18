@@ -136,10 +136,10 @@
             <label for="careers-info">Additional Information</label>
             <textarea id="careers-info" name="info" rows="5" placeholder="Tell us about your experience, skills, or anything else you'd like us to know."></textarea>
           </div>
-          <!-- Honeypot: hidden from people, tempting to bots. Server drops any submission that fills it. -->
+          <!-- Honeypot: hidden from people, tempting to bots. Rejected submissions must show an error, never a success message. -->
           <div style="position:absolute;left:-9999px;" aria-hidden="true">
-            <label for="careers-company">Company</label>
-            <input type="text" id="careers-company" name="company" tabindex="-1" autocomplete="off">
+            <label for="careers-form-check">Leave this field blank</label>
+            <input type="text" id="careers-form-check" name="contact_check" tabindex="-1" autocomplete="off" data-1p-ignore data-lpignore="true">
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%;">Submit Application</button>
         </form>

@@ -92,10 +92,10 @@
                 <label for="contact-message">Message (optional)</label>
                 <textarea id="contact-message" name="message" rows="5" maxlength="4000" placeholder="Tell us about your project or question..."></textarea>
               </div>
-              <!-- Honeypot: hidden from people, tempting to bots. Server drops any submission that fills it. -->
+              <!-- Honeypot: hidden from people, tempting to bots. Rejected submissions must show an error, never a success message. -->
               <div style="position:absolute;left:-9999px;" aria-hidden="true">
-                <label for="contact-company">Company</label>
-                <input type="text" id="contact-company" name="company" tabindex="-1" autocomplete="off">
+                <label for="contact-form-check">Leave this field blank</label>
+                <input type="text" id="contact-form-check" name="contact_check" tabindex="-1" autocomplete="off" data-1p-ignore data-lpignore="true">
               </div>
               <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
             </form>
